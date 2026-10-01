@@ -140,6 +140,14 @@
 }
 .gift-banner__btn {
   justify-self: start;
+  max-width: 100%;
+}
+@media (max-width: 480px) {
+  .gift-banner__btn {
+    justify-self: stretch;
+    padding-inline: 0.875rem;
+    white-space: normal;
+  }
 }
 
 /* ---------- футер ---------- */

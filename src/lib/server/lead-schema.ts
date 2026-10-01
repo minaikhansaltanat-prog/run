@@ -15,7 +15,7 @@ const attribution = z
   .partial();
 
 export const leadSchema = z.object({
-  type: z.enum(["short", "gift"]),
+  type: z.literal("short"),
   name: z.string().trim().min(2).max(80),
   phone: z.string().max(40).refine(isValidPhone, "phone"),
   method: z.enum(["whatsapp", "telegram", "call"]),

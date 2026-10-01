@@ -91,9 +91,13 @@
 /* политика */
 .legal__wrap {
   display: grid;
+  /* minmax(0, 1fr) и перенос длинных слов: заголовок "конфиденциальности" не раздувает страницу на узких телефонах (320 px) */
+  grid-template-columns: minmax(0, 1fr);
   gap: 8px;
   max-width: 820px;
   margin-inline: 0;
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 .legal__updated {
   margin-bottom: 20px;

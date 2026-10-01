@@ -28,6 +28,7 @@ npm run dev                  # http://localhost:3000
 | `npm test` | unit-тесты (маска и проверка телефона) |
 | `npm run lint:content` | сверка ключей ru/kk, пустые и непереведенные строки |
 | `npm run check:overflow` | нет горизонтального переполнения на 360-1920 px (нужен запущенный сайт) |
+| `npm run check:pricelist` | прайс-лист открывается, рисуется, не скачивается и не копируется (защита работает) |
 | `npm run check:taps` | ничто не перекрывает кнопки и ссылки (плавающая кнопка, шапка, панель) на телефоне и компьютере |
 | `npm run check:contrast` | контраст текста по токенам палитры |
 | `npm run photos` | конвейер фото: апскейл, цветокоррекция, AVIF/WebP/JPEG в `public/img` |
@@ -75,7 +76,7 @@ npm run dev                  # http://localhost:3000
 
 - **Тексты ru/kk**: `content/ru.json`, `content/kk.json` (одинаковые ключи; `npm run lint:content` ловит расхождения).
 - **Контакты, ссылки, подарок**: `config/site.ts`.
-- **Прайс-лист (подарок)**: положить PDF в `public/downloads/ruh-price-list.pdf` и поставить `gift.available: true` в `config/site.ts`.
+- **Прайс-лист (подарок)**: показывается на экране кнопкой «Смотреть прайс-лист», скачать его нельзя. Новый PDF положить в `assets/pricelist/source.pdf` и выполнить `npm run pricelist` (нужны `pip install pymupdf pillow`): скрипт делает страницы-картинки с водяным знаком в `public/pricelist` и список `content/pricelist.json`; их коммитят, **сам PDF не коммитится** (он в `.gitignore`).
 - **Смета-калькулятор** убран по решению клиента. Последняя версия с ним сохранена в git-теге `calculator-v1` (`git checkout calculator-v1`).
 - **Объекты**: `content/objects.json` (+ тексты в `content/*.json`, раздел `objects`). Площадь/срок/год заполнять только по подтвержденным данным.
 - **Отзывы**: `content/reviews.json` (только с разрешения авторов).

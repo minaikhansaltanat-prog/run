@@ -42,3 +42,9 @@ graphify-out/
 
 # исходники новых фото клиента (рабочие копии лежат в assets/raw, список в assets/raw/manifest.json)
 Photo/New/
+
+# прайс-лист клиента: оригинальный PDF не публикуется ни на сайте, ни в репозитории.
+# На сайт идут только страницы-картинки с водяным знаком (public/pricelist), их собирает npm run pricelist
+assets/pricelist/
+/*.pdf
+/*.pdf.pdf

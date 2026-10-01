@@ -1,0 +1,257 @@
+/* =========================================================================
+   Просмотр прайс-листа на весь экран (PriceListViewer).
+   Темная сцена, страницы-картинки на canvas, без кнопки "Скачать".
+   Выделение, перетаскивание и долгое нажатие отключены; при печати окно и страница не выводятся.
+   ========================================================================= */
+.pl-root {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-dialog);
+  display: grid;
+  /* minmax(0, 1fr): колонка не раздувается под кнопки и текст, иначе окно шире экрана телефона */
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  background:
+    radial-gradient(900px 480px at 50% -8%, rgba(255, 199, 0, 0.1), transparent 70%),
+    radial-gradient(700px 420px at 100% 100%, rgba(251, 237, 33, 0.05), transparent 70%),
+    #0d0d0f;
+  color: #fff;
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  animation: pl-in 0.45s var(--ease-spring) both;
+}
+@keyframes pl-in {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* верхняя панель */
+.pl-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: calc(10px + env(safe-area-inset-top, 0px)) max(var(--gutter), env(safe-area-inset-right, 0px)) 10px max(var(--gutter), env(safe-area-inset-left, 0px));
+  background: rgba(15, 15, 17, 0.92);
+  border-bottom: 1px solid var(--line-dark);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.pl-bar__icon {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--color-gold-500);
+  color: var(--color-obsidian-900);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.5),
+    0 8px 18px rgba(255, 199, 0, 0.28);
+}
+.pl-bar__text {
+  min-width: 0;
+  flex: 1;
+}
+.pl-bar__name {
+  font-family: var(--font-display);
+  font-size: 1.125rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.pl-bar__meta {
+  margin-top: 2px;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+}
+.pl-bar__page {
+  flex: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line-dark);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.pl-close {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line-dark);
+  color: #fff;
+  cursor: pointer;
+  transition:
+    transform 0.3s var(--ease-spring),
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+.pl-close:hover {
+  background: var(--color-gold-500);
+  color: var(--color-obsidian-900);
+}
+.pl-close:active {
+  transform: scale(0.94);
+}
+.pl-close:focus-visible {
+  outline: 3px solid var(--color-gold-500);
+  outline-offset: 3px;
+}
+
+/* прокручиваемая область со страницами */
+.pl-scroll {
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y pinch-zoom;
+  padding: 18px max(var(--gutter), env(safe-area-inset-right, 0px)) 28px max(var(--gutter), env(safe-area-inset-left, 0px));
+  outline: none;
+}
+.pl-pages {
+  display: grid;
+  /* minmax(0, 1fr): колонка не раздувается под ширину canvas (1192 px), иначе окно уезжает за край телефона */
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+  width: min(940px, 100%);
+  margin-inline: auto;
+}
+.pl-page {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.4),
+    0 28px 60px rgba(0, 0, 0, 0.45);
+}
+.pl-page canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  pointer-events: none;
+}
+.pl-page__skeleton {
+  position: absolute;
+  inset: 0;
+  background: #eceded;
+  animation: pl-pulse 1.4s ease-in-out infinite;
+}
+@keyframes pl-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.pl-page__error {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: var(--color-obsidian-900);
+  text-align: center;
+  font-weight: 500;
+}
+
+/* завеса: при уходе из окна и по PrintScreen страницы размываются */
+.pl-shield {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1rem + 1.2vw, 1.75rem);
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+}
+.pl-root[data-shield="true"] .pl-pages {
+  filter: blur(34px) brightness(0.55);
+}
+.pl-root[data-shield="true"] .pl-shield {
+  position: fixed;
+  opacity: 1;
+}
+
+/* нижняя панель действий */
+.pl-actions {
+  display: flex;
+  gap: 10px;
+  padding: 10px max(var(--gutter), env(safe-area-inset-right, 0px)) calc(10px + env(safe-area-inset-bottom, 0px)) max(var(--gutter), env(safe-area-inset-left, 0px));
+  background: rgba(15, 15, 17, 0.94);
+  border-top: 1px solid var(--line-dark);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.35);
+}
+.pl-actions .btn {
+  flex: 1;
+  min-width: 0;
+  min-height: 48px;
+  padding-inline: 0.75rem;
+}
+@media (min-width: 640px) {
+  .pl-actions {
+    justify-content: center;
+  }
+  .pl-actions .btn {
+    flex: 0 1 280px;
+  }
+}
+/* на телефоне вторая кнопка остается значком WhatsApp (подпись читают скринридеры): обе подписи рядом не помещаются */
+@media (max-width: 520px) {
+  .pl-actions__label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+  .pl-actions .btn-outline-light {
+    flex: 0 0 56px;
+    padding-inline: 0;
+  }
+}
+@media (max-width: 420px) {
+  .pl-bar__meta {
+    font-size: 0.75rem;
+  }
+  .pl-bar__page {
+    padding: 5px 9px;
+    font-size: 0.8125rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pl-root,
+  .pl-page__skeleton {
+    animation: none;
+  }
+}
+
+/* печать: ни окно, ни страница сайта не выводятся */
+@media print {
+  .pl-root {
+    display: none !important;
+  }
+  html.pricelist-open body {
+    display: none !important;
+  }
+}

@@ -10,9 +10,7 @@ export type AnalyticsEvent =
   | "gallery_open"
   | "gallery_filter"
   | "gallery_load_more"
-  | "gift_open"
-  | "gift_submit"
-  | "gift_download";
+  | "pricelist_open";
 
 declare global {
   interface Window {

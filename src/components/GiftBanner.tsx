@@ -1,9 +1,9 @@
 "use client";
 import { useTranslations } from "next-intl";
-import { DownloadSimple, Gift } from "@phosphor-icons/react";
-import { openGift } from "@/lib/events";
+import { Eye, Gift } from "@phosphor-icons/react";
+import { openPriceList } from "@/lib/events";
 
-/** Баннер "Подарок: прайс-лист" под калькулятором (по просьбе клиента) */
+/** Золотая карточка "Подарок: прайс-лист": открывает прайс-лист на экране (скачать его нельзя, по просьбе клиента) */
 export function GiftBanner() {
   const t = useTranslations("gift");
   return (
@@ -16,19 +16,19 @@ export function GiftBanner() {
         <h3 className="gift-banner__title">{t("title")}</h3>
         <p className="gift-banner__text">{t("text")}</p>
       </div>
-      <button type="button" className="btn btn-dark btn-lg gift-banner__btn" onClick={openGift}>
-        <DownloadSimple size={20} weight="bold" aria-hidden="true" />
+      <button type="button" className="btn btn-dark btn-lg gift-banner__btn" onClick={openPriceList}>
+        <Eye size={20} weight="bold" aria-hidden="true" />
         {t("button")}
       </button>
     </div>
   );
 }
 
-/** Маленькая кнопка-ссылка "Подарок" для финального блока */
+/** Маленькая кнопка-ссылка "Подарок: прайс-лист" для финального блока */
 export function GiftLink({ className = "" }: { className?: string }) {
   const t = useTranslations("nav");
   return (
-    <button type="button" className={`gift-link ${className}`} onClick={openGift}>
+    <button type="button" className={`gift-link ${className}`} onClick={openPriceList}>
       <Gift size={20} weight="regular" aria-hidden="true" />
       {t("gift")}
     </button>

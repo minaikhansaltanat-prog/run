@@ -12,7 +12,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { MobileBar } from "@/components/MobileBar";
 import { FloatingContactLazy } from "@/components/FloatingContactLazy";
-import { GiftDialogHost } from "@/components/GiftDialogHost";
+import { PriceListHost } from "@/components/PriceListHost";
 import { ConsentBanner } from "@/components/ConsentBanner";
 import { ClientMessages } from "@/components/ClientMessages";
 import { AttributionCapture } from "@/components/AttributionCapture";
@@ -111,8 +111,8 @@ export default async function LocaleLayout({ children, params }: { children: Rea
           <Footer />
           <MobileBar />
           <FloatingContactLazy />
-          <ClientMessages namespaces={["gift", "cta"]}>
-            <GiftDialogHost />
+          <ClientMessages namespaces={["gift"]}>
+            <PriceListHost />
           </ClientMessages>
           {process.env.NEXT_PUBLIC_GA_ID || process.env.NEXT_PUBLIC_META_PIXEL_ID ? <ConsentBanner /> : null}
         </NextIntlClientProvider>

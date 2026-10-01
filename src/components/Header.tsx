@@ -6,7 +6,7 @@ import { Link, usePathname } from "@/i18n/navigation";
 import { BrandLink } from "@/components/ui/Logo";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { lockScroll, unlockScroll } from "@/lib/scroll-lock";
-import { openGift } from "@/lib/events";
+import { openPriceList } from "@/lib/events";
 import { track } from "@/lib/analytics";
 import { site, whatsappLink } from "@config/site";
 
@@ -184,8 +184,8 @@ export function Header() {
               style={{ ["--i" as string]: NAV.length }}
               onClick={() => {
                 close();
-                // окно открывается после закрытия меню, чтобы не конфликтовать с блокировкой прокрутки
-                window.setTimeout(openGift, 120);
+                // прайс-лист открывается после закрытия меню, чтобы не конфликтовать с блокировкой прокрутки
+                window.setTimeout(openPriceList, 120);
               }}
             >
               <span className="icon-plate icon-plate-on" aria-hidden="true">

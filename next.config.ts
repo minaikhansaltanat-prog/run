@@ -39,16 +39,13 @@ const nextConfig: NextConfig = {
         images: { unoptimized: true },
       }
     : {
-        // файл подарка (прайс-лист) должен попасть в serverless-функцию на Vercel
-        outputFileTracingIncludes: {
-          "/api/lead": ["./public/downloads/**"],
-        },
         async headers() {
           return [
             { source: "/:path*", headers: securityHeaders },
             { source: "/img/:path*", headers: staticAssetCache },
             { source: "/brand/:path*", headers: staticAssetCache },
-            { source: "/downloads/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=3600" }] },
+            // страницы прайс-листа лежат под именами с хэшем содержимого
+            { source: "/pricelist/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=31536000, immutable" }] },
           ];
         },
       }),

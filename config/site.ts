@@ -40,13 +40,3 @@ export const site = {
 export function whatsappLink(text: string): string {
   return `${site.whatsapp}?text=${encodeURIComponent(text)}`;
 }
-
-/**
- * Файл подарка (прайс-лист). Клиент кладет PDF в public/downloads/ruh-price-list.pdf,
- * затем ставит available: true. Пока файла нет, форма принимает заявку и менеджер присылает прайс сам.
- * TODO_CLIENT: прайс-лист от клиента (см. docs/open-questions.md, пункт про прайс).
- */
-export const gift = {
-  file: "/downloads/ruh-price-list.pdf",
-  available: false,
-} as const;

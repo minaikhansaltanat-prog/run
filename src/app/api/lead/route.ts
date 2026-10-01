@@ -3,9 +3,6 @@ import { clientIp, rateLimit } from "@/lib/server/rate-limit";
 import { leadSchema } from "@/lib/server/lead-schema";
 import { buildLeadMessage } from "@/lib/server/lead-message";
 import { sendTelegram } from "@/lib/server/telegram";
-import { gift } from "@config/site";
-import { existsSync } from "node:fs";
-import path from "node:path";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -47,9 +44,5 @@ export async function POST(req: Request) {
     return json({ ok: false, error: sent.error ?? "send_failed" }, 503);
   }
 
-  const giftFileReady = gift.available && existsSync(path.join(process.cwd(), "public", gift.file));
-  return json({
-    ok: true,
-    gift: data.type === "gift" ? { available: giftFileReady, file: giftFileReady ? gift.file : null } : undefined,
-  });
+  return json({ ok: true });
 }

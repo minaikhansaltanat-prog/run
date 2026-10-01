@@ -1,5 +1,5 @@
 "use client";
-// Общая форма заявки: короткая (имя, телефон) и подарок (прайс-лист).
+// Общая форма заявки: короткая (имя, телефон).
 // Защита: honeypot, ловушка по времени, маска телефона, валидация; запасной путь через WhatsApp.
 import { useId, useRef, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
@@ -8,41 +8,25 @@ import { Link } from "@/i18n/navigation";
 import { getAttribution } from "@/lib/attribution";
 import { maskPhoneOnChange, isValidPhone } from "@/lib/phone";
 import { track } from "@/lib/analytics";
-import { asset, STATIC_SITE } from "@/lib/site-mode";
+import { STATIC_SITE } from "@/lib/site-mode";
 import { buildStaticLead } from "@/lib/lead-static";
 import type { LeadMethod, LeadType } from "@/lib/lead-labels";
-import { gift, whatsappLink } from "@config/site";
-
-export interface LeadResult {
-  ok: true;
-  gift?: { available: boolean; file: string | null };
-}
+import { whatsappLink } from "@config/site";
 
 interface Props {
   type: LeadType;
   submitLabel: string;
   sendingLabel: string;
-  /** сообщение внутри формы после успеха (если не нужно, форма просто вызывает onSuccess) */
+  /** сообщение внутри формы после успеха */
   successMessage?: string;
   /** запасное сообщение для WhatsApp, если сервер недоступен */
   fallbackText: string;
   showMethod?: boolean;
   dark?: boolean;
-  onSuccess?: (r: LeadResult) => void;
   idPrefix?: string;
 }
 
-export function LeadForm({
-  type,
-  submitLabel,
-  sendingLabel,
-  successMessage,
-  fallbackText,
-  showMethod = true,
-  dark = false,
-  onSuccess,
-  idPrefix,
-}: Props) {
+export function LeadForm({ type, submitLabel, sendingLabel, successMessage, fallbackText, showMethod = true, dark = false, idPrefix }: Props) {
   const t = useTranslations("cta");
   const locale = useLocale() as "ru" | "kk";
   const uid = useId();
@@ -95,10 +79,8 @@ export function LeadForm({
         }),
       });
       if (!res.ok) throw new Error(String(res.status));
-      const data = (await res.json()) as LeadResult;
       setStatus("success");
       track("lead_submit", { type, locale });
-      onSuccess?.(data);
     } catch {
       setStatus("error");
     }
@@ -126,19 +108,6 @@ export function LeadForm({
       setWaUrl(msg.url);
       setStatus("whatsapp");
       track("lead_submit", { type, locale });
-      if (type === "gift") {
-        track("gift_submit");
-        if (gift.available) {
-          // прайс-лист скачивается сразу, не дожидаясь сообщения
-          const a = document.createElement("a");
-          a.href = asset(gift.file);
-          a.download = "RUH-Construction-price-list.pdf";
-          document.body.appendChild(a);
-          a.click();
-          a.remove();
-          track("gift_download");
-        }
-      }
       // на телефоне откроется приложение WhatsApp; если браузер блокирует окно, остается кнопка ниже
       window.open(msg.url, "_blank", "noopener,noreferrer");
     } catch {

@@ -1,0 +1,36 @@
+{
+  "note": "Создано scripts/build-pricelist.py. Оригинальный PDF на сайт не публикуется.",
+  "updated": "2026-10-01",
+  "pages": [
+    {
+      "file": "/pricelist/page-1.5325a8ab.webp",
+      "width": 1192,
+      "height": 1686
+    },
+    {
+      "file": "/pricelist/page-2.ccee8000.webp",
+      "width": 1192,
+      "height": 1686
+    },
+    {
+      "file": "/pricelist/page-3.ac5b29a8.webp",
+      "width": 1192,
+      "height": 1686
+    },
+    {
+      "file": "/pricelist/page-4.865281cb.webp",
+      "width": 1192,
+      "height": 1686
+    },
+    {
+      "file": "/pricelist/page-5.6c431207.webp",
+      "width": 1192,
+      "height": 1686
+    },
+    {
+      "file": "/pricelist/page-6.12711b48.webp",
+      "width": 1192,
+      "height": 1686
+    }
+  ]
+}
