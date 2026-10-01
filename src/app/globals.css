@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+@import "./styles/base.css";
+@import "./styles/components.css";
+@import "./styles/header.css";
+@import "./styles/hero.css";
+@import "./styles/sections.css";
+@import "./styles/blocks.css";
+@import "./styles/calculator.css";
+@import "./styles/gallery.css";
+@import "./styles/floating.css";
+@import "./styles/pages.css";
+
+/* =========================================================================
+   Токены дизайн-системы RUH (ТЗ раздел 7.2)
+   Палитра строго из трех цветов: золото, obsidian, белый (+ оттенки от них)
+   и системные цвета ошибки/успеха. Золото никогда не используется как цвет
+   текста на белом (контраст около 1,6:1): только заливка с темным текстом
+   или цвет на темном фоне.
+   ========================================================================= */
+@theme inline {
+  /* золото */
+  --color-gold-500: #ffc700;
+  --color-gold-400: #ffb800;
+  --color-gold-300: #ffd84d;
+  --color-gold-100: #fff1b8;
+  --color-gold-50: #fff9e0;
+  /* градиент логотипа (сняты пипеткой с файла логотипа) */
+  --color-logo-yellow: #fbed21;
+  --color-logo-orange: #faae3b;
+  /* obsidian */
+  --color-obsidian-900: #0f0f11;
+  --color-obsidian-800: #1a1a1a;
+  --color-obsidian-700: #26262b;
+  --color-obsidian-600: #3a3a41;
+  /* светлые */
+  --color-white: #ffffff;
+  --color-paper: #f8f9fa;
+  --color-muted: #5b5b62;
+  --color-muted-dark: #b9b9c0;
+  /* системные */
+  --color-error: #c62828;
+  --color-success: #2e7d32;
+  --color-wa: #25d366;
+
+  --font-sans: var(--font-onest), ui-sans-serif, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: var(--font-playfair), "Times New Roman", Georgia, serif;
+
+  --radius-btn: 12px;
+  --radius-card: 20px;
+  --radius-panel: 24px;
+  --radius-chip: 999px;
+
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}

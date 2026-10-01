@@ -1,0 +1,72 @@
+{
+  "marker": "TEST_ONLY",
+  "version": "2026-10-01-test",
+  "updatedAt": "2026-10-01",
+  "pricingApproved": false,
+  "showTimeline": false,
+  "note": "ВСЕ ЦЕНЫ И КОЭФФИЦИЕНТЫ НИЖЕ ТЕСТОВЫЕ (ТЗ 13.5), нужны только для разработки и тестов. Пока pricingApproved=false, на публичном сайте цифры не показываются. Реальный прайс RUH клиент заполняет в pricing-template.xlsx.",
+  "limits": { "minArea": 20, "maxArea": 500, "defaultArea": 60 },
+  "classRate": { "standard": 32000, "comfort": 45000, "premium": 65000 },
+  "groupFactor": { "residential": 1.0, "commercial": 1.1 },
+  "areaFactor": [
+    { "upTo": 40, "factor": 1.1 },
+    { "upTo": 80, "factor": 1.0 },
+    { "upTo": 150, "factor": 0.97 },
+    { "upTo": null, "factor": 0.94 }
+  ],
+  "packageShare": {
+    "demolition": 4,
+    "rough": 20,
+    "electrical": 10,
+    "lighting": 3,
+    "plumbing": 9,
+    "tiling": 13,
+    "flooring": 10,
+    "finishing": 12,
+    "ceilings": 6,
+    "doors_trim": 7,
+    "logistics": 6
+  },
+  "conditionMod": {
+    "bare": {},
+    "prefinish": { "rough": 0.4, "demolition": 0 },
+    "old": { "demolition": 3 }
+  },
+  "presets": {
+    "turnkey": [
+      "demolition",
+      "rough",
+      "electrical",
+      "lighting",
+      "plumbing",
+      "tiling",
+      "flooring",
+      "finishing",
+      "ceilings",
+      "doors_trim",
+      "logistics"
+    ],
+    "rough_only": ["demolition", "rough", "electrical", "plumbing"],
+    "finish_only": ["tiling", "flooring", "finishing", "ceilings", "doors_trim", "lighting", "logistics"],
+    "refresh": ["finishing", "flooring", "doors_trim", "lighting", "logistics"]
+  },
+  "ceilingFactor": { "low": 1.0, "mid": 1.05, "high": 1.12 },
+  "noElevatorFactor": 1.03,
+  "urgencyFactor": { "normal": 1.0, "fast": 1.12 },
+  "materialsShare": { "standard": 0.45, "comfort": 0.5, "premium": 0.55 },
+  "addOns": {
+    "heatedFloorRatePerM2": 9000,
+    "heatedFloorBathroomM2": 5,
+    "heatedFloorAllShare": 0.8,
+    "layoutPct": { "small": 3, "medium": 6, "large": 10 },
+    "hvacRatePerM2": 12000
+  },
+  "range": { "basePct": 10, "noProjectPct": 5, "unsurePct": 5, "commercialPct": 5, "maxPct": 25 },
+  "roundingStep": 10000,
+  "timeline": {
+    "fixedDays": 14,
+    "daysPerM2Turnkey": 0.9,
+    "complexity": { "residential": 1.0, "commercial": 1.1 },
+    "rangePct": 20
+  }
+}

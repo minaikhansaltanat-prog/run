@@ -1,0 +1,11 @@
+node_modules
+.next
+.cache
+tools
+public
+temporary screenshots
+content/*.json
+content/gallery.json
+docs
+assets
+*.css

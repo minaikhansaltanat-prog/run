@@ -1,0 +1,222 @@
+/* =========================================================================
+   Базовые стили: токены вне Tailwind, сброс, устойчивый скролл на телефоне
+   ========================================================================= */
+:root {
+  --line: rgba(15, 15, 17, 0.1);
+  --line-strong: rgba(15, 15, 17, 0.18);
+  --line-dark: rgba(255, 255, 255, 0.12);
+
+  /* слои глубины: base -> elevated -> floating */
+  --shadow-soft: 0 1px 2px rgba(15, 15, 17, 0.04), 0 10px 30px rgba(15, 15, 17, 0.06);
+  --shadow-card: 0 1px 2px rgba(15, 15, 17, 0.05), 0 6px 16px rgba(15, 15, 17, 0.05), 0 22px 44px rgba(15, 15, 17, 0.07);
+  --shadow-lift: 0 2px 4px rgba(15, 15, 17, 0.05), 0 24px 60px rgba(15, 15, 17, 0.16);
+  --shadow-gold: inset 0 1px 0 rgba(255, 255, 255, 0.45), 0 2px 6px rgba(160, 110, 0, 0.25), 0 10px 26px rgba(255, 199, 0, 0.3);
+  --shadow-gold-hover: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 3px 8px rgba(160, 110, 0, 0.3), 0 16px 34px rgba(255, 184, 0, 0.38);
+
+  --header-h: 68px;
+  --bar-h: 68px;
+  --gutter: 16px;
+  --container: 1280px;
+  --section-y: 64px;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+
+  /* шкала z-index (одна на весь проект) */
+  --z-content: 1;
+  --z-fab: 40;
+  --z-bar: 45;
+  --z-header: 50;
+  --z-drawer: 55;
+  --z-dialog: 70;
+  --z-lightbox: 80;
+  --z-skip: 100;
+
+  --grain: url("/brand/grain.webp");
+}
+
+@media (min-width: 768px) {
+  :root {
+    --header-h: 76px;
+    --gutter: 24px;
+    --section-y: 88px;
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --gutter: 32px;
+    --section-y: 112px;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  /* ТВЕРДАЯ ОСНОВА ДЛЯ ТЕЛЕФОНА: страница не уезжает вправо-влево и не "резинится" */
+  overflow-x: clip;
+  overscroll-behavior-y: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  background: var(--color-white);
+  font-family: var(--font-sans);
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  overflow-x: clip;
+  max-width: 100%;
+  color: var(--color-obsidian-900);
+  background: var(--color-white);
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.65;
+  font-feature-settings: "kern", "liga", "calt";
+  font-optical-sizing: auto;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-wrap: break-word;
+}
+@media (min-width: 1024px) {
+  body {
+    font-size: 1.125rem; /* 18px */
+  }
+}
+
+/* на мобильном нижняя панель не перекрывает последний контент */
+@media (max-width: 1023.98px) {
+  body {
+    padding-bottom: calc(var(--bar-h) + var(--safe-bottom));
+  }
+}
+
+img,
+svg,
+video,
+canvas,
+picture {
+  display: block;
+  max-width: 100%;
+}
+img {
+  height: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+ul,
+ol,
+dl,
+dd {
+  margin: 0;
+}
+/* :where() обнуляет специфичность, чтобы компоненты могли задавать свои отступы спискам */
+:where(ul[role="list"], ol[role="list"]) {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+button {
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  background: none;
+  border: 0;
+  padding: 0;
+  touch-action: manipulation;
+}
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+::selection {
+  background: var(--color-gold-500);
+  color: var(--color-obsidian-900);
+}
+
+/* Цифры в калькуляторе и плашках: табличные, чтобы не "прыгали" */
+.tnum {
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+/* Видимый фокус (ТЗ: кольцо 3 px; на светлом obsidian, на темном золото) */
+:focus-visible {
+  outline: 3px solid var(--color-obsidian-900);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+.on-dark :focus-visible,
+.dark-surface :focus-visible {
+  outline-color: var(--color-gold-500);
+}
+
+.skip-link {
+  position: fixed;
+  left: 12px;
+  top: -80px;
+  z-index: var(--z-skip);
+  padding: 12px 18px;
+  border-radius: 12px;
+  background: var(--color-obsidian-900);
+  color: #fff;
+  font-weight: 600;
+  transition: transform 0.3s var(--ease-spring);
+}
+.skip-link:focus-visible {
+  transform: translateY(92px);
+  outline-color: var(--color-gold-500);
+}
+
+/* блокировка прокрутки под меню/окном (ставит JS через data-атрибут) */
+html[data-scroll-locked="true"] body {
+  position: fixed;
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: var(--scroll-lock-top, 0);
+  overflow: hidden;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    animation-delay: 0ms !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+}

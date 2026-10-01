@@ -1,0 +1,38 @@
+# зависимости и сборка
+node_modules/
+.next/
+out/
+coverage/
+*.tsbuildinfo
+next-env.d.ts
+
+# секреты и локальные настройки
+.env
+.env.*
+!.env.example
+
+# кэши пайплайна фото и шрифтов (воспроизводятся командами npm run photos / python scripts/build-fonts.py)
+.cache/
+tools/
+temporary screenshots/
+.vercel/
+*.log
+
+# файлы навыков Claude, лежащие в корне рабочей папки (не часть сайта)
+/core.py
+/design_system.py
+/search.py
+/*.pyc
+/SKILL.md
+/SKILL s.md
+/plugin.json
+/README.frontend-design-skill.md
+/data/
+/ava.jfif
+/design-system/
+__pycache__/
+
+# рабочие превью
+assets/brand/_*.png
+assets/brand/*.extracted.svg
+docs/photo-qa/_*.png

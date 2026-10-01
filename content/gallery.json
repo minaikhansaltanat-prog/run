@@ -1,0 +1,468 @@
+{
+  "generatedAt": "2026-10-01T08:15:43.057Z",
+  "preset": "ruh-look",
+  "items": [
+    {
+      "id": "ph-0001",
+      "file": "/img/ph-0001",
+      "width": 2560,
+      "height": 1706,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600,
+        2400
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "living",
+      "tags": [
+        "window",
+        "light"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": true,
+      "order": 1,
+      "focal": [
+        0.5,
+        0.55
+      ],
+      "lowRes": false,
+      "dominant": "#f8f8f8",
+      "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAwBACdASoYABAAPu1iqk2ppaQiMAgBMB2JZwDCgB074dPqWLOEhw5Vm+AA+5FfNYNMiMz7B4fHHSU7+0WlBWkPv6FyVoO7+WhxpM0tDTSCTh/0UnmZuyNpjFQqpvHw+YaY6gVXmlFIAAAA",
+      "raw": "p06"
+    },
+    {
+      "id": "ph-0005",
+      "file": "/img/ph-0005",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-sanuzly-i-holl",
+      "objectType": "apartment",
+      "room": "bathroom",
+      "tags": [
+        "tile",
+        "mirror-light"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": true,
+      "order": 2,
+      "focal": [
+        0.45,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#a8a898",
+      "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAADwBgCdASoYACQAPu1urE+ppyQiKrgMATAdiWUAw6wjYoXUGBVzBuP/yQnzm3aSD9JnGWUniYT+CG+tAX02yijQAP6XmH9t7bOJC/bNnQFGmJENFB+vgCF6zdL4/K4nlN0rbHBVYQNI6A/p4KT5f9+SONxv62hNuLOZkHkSV9Z00hE9KwyHryOM9JmjZkaZJALbmr/xRCSfUx+z9lnJM4iOL/QgAA==",
+      "raw": "p09"
+    },
+    {
+      "id": "ph-0003",
+      "file": "/img/ph-0003",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "bedroom",
+      "tags": [
+        "window",
+        "floor"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": true,
+      "order": 3,
+      "focal": [
+        0.62,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#b8b8b8",
+      "lqip": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAADwBQCdASoYACQAPuVeqE2pJSQiMBqtUSAciWcAw+g4UJrkSEN7zj37uLVgeGsoO4+s5V7ZRvCRAADJRljBmwIc5vt4o81f2LBReuNtFIQ3MGrDxAP3tgXn/15CAlokrLIpc0Pxkx2oqqOUyhiQrb2BU6Sa7+Wxv3+rFDmaFvDxWHk+OhMix3HaKxA0eg72oA34uVllUoVhmQAA",
+      "raw": "p04"
+    },
+    {
+      "id": "ph-0002",
+      "file": "/img/ph-0002",
+      "width": 2560,
+      "height": 1706,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600,
+        2400
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "kitchen",
+      "tags": [
+        "open-space",
+        "track-light"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": true,
+      "order": 4,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#685848",
+      "lqip": "data:image/webp;base64,UklGRngAAABXRUJQVlA4IGwAAABQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JZwAATBUwzs4x3VES8Q7nKPLgAP6QekeJ2QyCHBgVYrvMWMHD9lrsIyfc116t9Hlh8E1w9o4oDMXZgGtC9eWvgp9EmTmPT+YBljEZw85pdsV/RgA=",
+      "raw": "p05"
+    },
+    {
+      "id": "ph-0006",
+      "file": "/img/ph-0006",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-sanuzly-i-holl",
+      "objectType": "apartment",
+      "room": "hall",
+      "tags": [
+        "hidden-doors",
+        "mirror"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": true,
+      "order": 5,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#a8a8a8",
+      "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAAAwBgCdASoYACQAPt1eqU2opaQiNVgMARAbiWcAxcgXCZzlnnvFX0ZXaGy1HPGoP4fBcx5Ckj/qbDbYAP7q1n47XSEOA9v7R3J8gXr3KPw384VNrCnyKD7uBUbfe49L1zKU+aCDZGJhqBD2bMMpBgKvruxin+kv+Wd4Z9LnMjCoW75jdwAAAA==",
+      "raw": "p12"
+    },
+    {
+      "id": "ph-0004",
+      "file": "/img/ph-0004",
+      "width": 2560,
+      "height": 1706,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600,
+        2400
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "bedroom",
+      "tags": [
+        "wardrobe",
+        "door"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": true,
+      "order": 6,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#989888",
+      "lqip": "data:image/webp;base64,UklGRmgAAABXRUJQVlA4IFwAAACQAwCdASoYABAAPu1kqk4ppaQiMAgBMB2JZwAAJfcxPnV0IazgAN1qR3tpUI9uu+aZFmR5geCgcvQzuRmZxmgpSpXg+jj45TKiG5QprwI9TXx6TVsdr5j48CcAAA==",
+      "raw": "p07"
+    },
+    {
+      "id": "ph-0007",
+      "file": "/img/ph-0007",
+      "width": 1440,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200
+      ],
+      "objectSlug": "interer-s-panoramnym-oknom",
+      "objectType": "apartment",
+      "room": "living",
+      "tags": [
+        "panoramic-window"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 7,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": true,
+      "dominant": "#a89888",
+      "lqip": "data:image/webp;base64,UklGRroAAABXRUJQVlA4IK4AAAAQBgCdASoYACsAPu1wrFKppiOipWsxMB2JZQC4MC50QSOsahe3+NnDSJCuTnOXxZBRwQi7H6S3XYAA/cwKqDdymzD3qE7m1mqEUccUdGjrHAcye4MzsbKDoh7cADx/tIHLoC1RTsQZ/FFhtBnzvu1tUuBQ/BlVn/6HJIS6doSGZS3Dw3ilNYVqjXfnfybM14H6p03uMYjuIdNxa/FbEbCyAZkC1tqoHCuykwyAAAA=",
+      "raw": "p13"
+    },
+    {
+      "id": "ph-0008",
+      "file": "/img/ph-0008",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-sanuzly-i-holl",
+      "objectType": "apartment",
+      "room": "hall",
+      "tags": [
+        "hidden-doors",
+        "veneer"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 8,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#888888",
+      "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADQBQCdASoYACQAPtFcok2oJaMiOrmYAQAaCWcAyywdm4g2Sz889HwzQWgVFuKNO/K3vWZSQhQAAP5oHEyy+bZMg4EtUwI2J2mBwDBE3ER63HVwhFrmRkjkmiMNFOoHIXCtx8TASVmFqwCby5jvSlbZn88+QOT58VKX5kwff5AZs0/fAAAAAA==",
+      "raw": "p11"
+    },
+    {
+      "id": "ph-0009",
+      "file": "/img/ph-0009",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-sanuzly-i-holl",
+      "objectType": "apartment",
+      "room": "hall",
+      "tags": [
+        "hidden-door",
+        "smart-panel"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 9,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#989898",
+      "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAACQBQCdASoYACQAPtliqE2oJiQiNVgMAQAbCWUAv7BDMr8PdwboiTMkoLOIiqxCB2zBgDWeAAD+v3bJYBzYubG94AVTfG7l3sjQX5Kv9OSyESnMPtnVRf0ZAq9Yq1ET1sv9B/x+gzU5LpuuScUs55rzggrTlHD4a8WgtCXpaqSKBBndhp6jqugA",
+      "raw": "p14"
+    },
+    {
+      "id": "ph-0010",
+      "file": "/img/ph-0010",
+      "width": 2560,
+      "height": 1706,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600,
+        2400
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "bedroom",
+      "tags": [
+        "desk"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 10,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#a8a8a8",
+      "lqip": "data:image/webp;base64,UklGRmwAAABXRUJQVlA4IGAAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZwDCgBdjgxxEKhDOqaA2NLgA+s2KDHtUb01GG7Z7kD0cb58069E49dhcWKQMvmlWo09QjuNaLKA200X9I613FKNdcAkAAAA=",
+      "raw": "p01"
+    },
+    {
+      "id": "ph-0011",
+      "file": "/img/ph-0011",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-sanuzly-i-holl",
+      "objectType": "apartment",
+      "room": "bathroom",
+      "tags": [
+        "tile",
+        "wall-hung"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 11,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#a8a898",
+      "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADQBQCdASoYACQAPu1sq1AppiOiqrgMATAdiWcAynghnKrV4Jg1SjsLrE1za91q9q0iDBCbc+mAAP7HSiZR6nI1Hlw9YKKNwOzfBcVFaPsTOkGVEqM2VlvZm0uqUmWslvnR4m+EeTo9uxcWYcaCG91UoVUdjeYumdDbbDgLMc0646s8nI/hzzr2AVdstGtnnMAAAA==",
+      "raw": "p08"
+    },
+    {
+      "id": "ph-0012",
+      "file": "/img/ph-0012",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-sanuzly-i-holl",
+      "objectType": "apartment",
+      "room": "bathroom",
+      "tags": [
+        "hidden-light"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 12,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#a8a898",
+      "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBgCdASoYACQAPu1urVIppiQipWsxMB2JZwDLpC5kieFPRCB0tkcJd+5A6ENmPXwGluCMlkL+f3AA/vJiF99EvcShV0nDC+10nZEQtUo7/LhFlksXsuYnTI2siFWgrToiHGy5QqPCB8fz/PMp/Y2zc0THVzVLiBOCk53t0SWuhBeEwBtXwbUBOf+pf4dzAZAAAA==",
+      "raw": "p10"
+    },
+    {
+      "id": "ph-0013",
+      "file": "/img/ph-0013",
+      "width": 1706,
+      "height": 2560,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "detail",
+      "tags": [
+        "door"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 13,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#888878",
+      "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAABQBQCdASoYACQAPu1orU6ppiSiMBqoATAdiWcAv7AKgpFdVDl798Az0SnrY9nApxC5ywAA5zu1Zn68VYiObhLloiZspgnotHEO2qv1RJt+3l9brXBZqFxTKIEqKPkjfIJND4dCIsYxHwzdNRdbii9obpSoalTolm7gAA==",
+      "raw": "p02"
+    },
+    {
+      "id": "ph-0014",
+      "file": "/img/ph-0014",
+      "width": 2560,
+      "height": 1706,
+      "widths": [
+        480,
+        768,
+        1200,
+        1600,
+        2400
+      ],
+      "objectSlug": "kvartira-svetlyy-interer",
+      "objectType": "apartment",
+      "room": "detail",
+      "tags": [
+        "window-sill",
+        "radiator"
+      ],
+      "stage": "after",
+      "pairId": null,
+      "featured": false,
+      "order": 14,
+      "focal": [
+        0.5,
+        0.5
+      ],
+      "lowRes": false,
+      "dominant": "#d8d8d8",
+      "lqip": "data:image/webp;base64,UklGRnAAAABXRUJQVlA4IGQAAADQAwCdASoYABAAPu1mqk4ppaOiMAgBMB2JZQAARQD9wT3wHPBL3QwAzApjqLi60Wh3XgD+LDWdsD4ZvXm9rUI8teNb8vw1h/b5948RWSlTIC1wgcBcY9Bl7gGOX9/Q2pE/QAAA",
+      "raw": "p03"
+    }
+  ],
+  "heroes": {
+    "desktop": {
+      "file": "/img/hero-d",
+      "width": 2560,
+      "height": 1440,
+      "aspect": 1.7777777777777777,
+      "widths": [
+        1200,
+        1600,
+        2400
+      ],
+      "dominant": "#f8f8f8",
+      "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZwC/OB0yUMo3Lebsl5OS82AA9RAA/G3FjZjYU3isUV4i9PqsllWt0uY+WU1Xc9w3OWTiXPVN9ZioBMqglLys+Z6jcNzzPnb8oiazb4AAAA=="
+    },
+    "mobile": {
+      "file": "/img/hero-m",
+      "width": 1440,
+      "height": 2560,
+      "aspect": 0.5625,
+      "widths": [
+        480,
+        768,
+        1200
+      ],
+      "dominant": "#b8b8b8",
+      "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACQBgCdASoYACsAPu1erlAppKQisBVaqTAdiWcAyRBSNgPvj6LP1S5puVWx5cYwYG9SdMzm2ybmpHItlzsAAPzAsLtm3XcEZAa+eIZmSOZu+serhKJNX8VMPtx/omqXDx0jrDbW2M0cY9LnQ8n985qDfGaSkMd3cEhDnl7R2iu/RtGdbCzNXuDVBI9GWI3q2E0l278emXcBg4ogEDaJjyytn2i8nX5RVFeQAA=="
+    }
+  }
+}

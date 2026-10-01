@@ -1,0 +1,32 @@
+{
+  "note": "Данные объектов. Тексты лежат в content/ru.json и content/kk.json (раздел objects). Поля area, months, year клиент еще не подтвердил (TODO_CLIENT): пока null, на сайте не показываются.",
+  "items": [
+    {
+      "slug": "kvartira-svetlyy-interer",
+      "type": "apartment",
+      "calcType": "apartment_new",
+      "cover": "ph-0001",
+      "area": null,
+      "months": null,
+      "year": null
+    },
+    {
+      "slug": "kvartira-sanuzly-i-holl",
+      "type": "apartment",
+      "calcType": "apartment_new",
+      "cover": "ph-0005",
+      "area": null,
+      "months": null,
+      "year": null
+    },
+    {
+      "slug": "interer-s-panoramnym-oknom",
+      "type": "apartment",
+      "calcType": "apartment_new",
+      "cover": "ph-0007",
+      "area": null,
+      "months": null,
+      "year": null
+    }
+  ]
+}

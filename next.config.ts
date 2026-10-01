@@ -1,0 +1,42 @@
+import type { NextConfig } from "next";
+import createNextIntlPlugin from "next-intl/plugin";
+
+const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
+
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  { key: "Permissions-Policy", value: "camera=(), microphone=(), geolocation=(), payment=()" },
+  { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains; preload" },
+];
+
+const staticAssetCache = [{ key: "Cache-Control", value: "public, max-age=2592000, stale-while-revalidate=86400" }];
+
+const nextConfig: NextConfig = {
+  poweredByHeader: false,
+  // не дописывать служебный блок в CLAUDE.md (файл правил проекта ведет заказчик)
+  agentRules: false,
+  reactStrictMode: true,
+  devIndicators: false,
+  // PDF-генерация живет только на сервере
+  serverExternalPackages: ["@react-pdf/renderer"],
+  // шрифты и логотип для PDF должны попасть в serverless-функцию на Vercel
+  outputFileTracingIncludes: {
+    "/api/calculator/pdf": ["./src/fonts/pdf/**", "./public/brand/logo-h-light.png"],
+    "/api/lead": ["./public/downloads/**"],
+  },
+  experimental: {
+    optimizePackageImports: ["@phosphor-icons/react", "motion"],
+  },
+  async headers() {
+    return [
+      { source: "/:path*", headers: securityHeaders },
+      { source: "/img/:path*", headers: staticAssetCache },
+      { source: "/brand/:path*", headers: staticAssetCache },
+      { source: "/downloads/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=3600" }] },
+    ];
+  },
+};
+
+export default withNextIntl(nextConfig);

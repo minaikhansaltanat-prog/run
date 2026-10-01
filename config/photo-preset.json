@@ -1,0 +1,61 @@
+{
+  "name": "ruh-look",
+  "version": "2026-10-01",
+  "note": "Пресет собран по статистике шести приватных калибровочных кадров (не публикуются, не лежат в репозитории) и стартовым параметрам ТЗ раздела 8.3. Сила переноса 0.5-0.7, чтобы не менять цвета материалов.",
+  "reference": {
+    "L_mean": 54.98,
+    "L_std": 24.15,
+    "L_p5": 10.5,
+    "L_p95": 86.46,
+    "a_mean": 0.78,
+    "b_mean": 5.7,
+    "chroma_mean": 9.11,
+    "cct_k": 5911
+  },
+  "grade": {
+    "strength": 0.6,
+    "targetMeanL": 57,
+    "exposureMaxShift": 4,
+    "highlightKnee": 90,
+    "highlightRolloff": 0.78,
+    "contrast": 0.34,
+    "blackPointPercentile": 0.5,
+    "blackPointStrength": 0.55,
+    "neutralChromaMax": 9,
+    "neutralTarget": {
+      "a": 0.5,
+      "b": 2.0
+    },
+    "whiteBalanceMaxShift": {
+      "a": 2.2,
+      "b": 3.4
+    },
+    "vibrance": 0.28,
+    "saturation": 0.04,
+    "yellowGreenReduction": 0.18,
+    "warmthTowardReference": 0.5,
+    "warmthMaxShift": 1.4
+  },
+  "upscale": {
+    "model": "realesrgan-x4plus",
+    "minLongSidePx": 2000,
+    "esrganWeight": 0.75,
+    "workingLongSidePx": 2560
+  },
+  "export": {
+    "widths": [480, 768, 1200, 1600, 2400],
+    "avifQuality": 55,
+    "webpQuality": 78,
+    "jpegQuality": 82,
+    "sharpen": {
+      "sigma": 0.9,
+      "flat": 0.7,
+      "jagged": 1.1
+    }
+  },
+  "qa": {
+    "maxHighlightClipPct": 1.0,
+    "minWidthForHeroPx": 2400,
+    "cctCorridorK": [5500, 6500]
+  }
+}
