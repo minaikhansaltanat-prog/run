@@ -13,6 +13,13 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 14px;
+  /* Закрытое меню (visibility: hidden) все равно занимает место: прозрачный контейнер перекрывал бы кнопки страницы
+     справа внизу (например "Далее" в калькуляторе на телефоне). Нажимаются только сама кнопка и открытое меню. */
+  pointer-events: none;
+}
+.fab__stack,
+.fab[data-open="true"] .fab__menu {
+  pointer-events: auto;
 }
 @media (max-width: 1023.98px) {
   .fab {
