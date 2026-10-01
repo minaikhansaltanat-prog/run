@@ -1,5 +1,6 @@
 // Адаптивное фото: AVIF / WebP / JPEG, заданные width/height (нет скачков верстки), размытая заглушка.
 import type { CSSProperties } from "react";
+import { asset } from "@/lib/site-mode";
 
 interface PhotoProps {
   /** база пути без ширины и расширения, например /img/ph-0001 */
@@ -18,7 +19,7 @@ interface PhotoProps {
   draggable?: boolean;
 }
 
-const srcset = (file: string, widths: number[], ext: string) => widths.map((w) => `${file}-${w}.${ext} ${w}w`).join(", ");
+const srcset = (file: string, widths: number[], ext: string) => widths.map((w) => `${asset(file)}-${w}.${ext} ${w}w`).join(", ");
 
 export function Photo({
   file,
@@ -49,7 +50,7 @@ export function Photo({
       <source type="image/avif" srcSet={srcset(file, widths, "avif")} sizes={sizes} />
       <source type="image/webp" srcSet={srcset(file, widths, "webp")} sizes={sizes} />
       <img
-        src={`${file}-${fallbackW}.jpg`}
+        src={`${asset(file)}-${fallbackW}.jpg`}
         srcSet={srcset(file, widths, "jpg")}
         sizes={sizes}
         width={width}

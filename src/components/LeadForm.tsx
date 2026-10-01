@@ -7,8 +7,10 @@ import { CheckCircle, WhatsappLogo } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { getAttribution } from "@/lib/attribution";
 import { maskPhoneOnChange, isValidPhone } from "@/lib/phone";
-import { track } from "@/lib/analytics";
-import { whatsappLink } from "@config/site";
+import { track, areaBucket } from "@/lib/analytics";
+import { asset, STATIC_SITE } from "@/lib/site-mode";
+import { buildStaticLead } from "@/lib/lead-static";
+import { gift, whatsappLink } from "@config/site";
 import type { EstimateInput } from "@/lib/estimate/types";
 
 type Method = "whatsapp" | "telegram" | "call";
@@ -60,7 +62,9 @@ export function LeadForm({
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<{ name?: string; phone?: string; consent?: string }>({});
-  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error" | "whatsapp">("idle");
+  /** статическая сборка: готовая ссылка на WhatsApp с текстом заявки */
+  const [waUrl, setWaUrl] = useState<string | null>(null);
 
   const nameRef = useRef<HTMLInputElement>(null);
   const phoneRef = useRef<HTMLInputElement>(null);
@@ -79,6 +83,7 @@ export function LeadForm({
     if (next.consent) return consentRef.current?.focus();
 
     setStatus("sending");
+    if (STATIC_SITE) return sendViaWhatsapp();
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
@@ -104,6 +109,72 @@ export function LeadForm({
     } catch {
       setStatus("error");
     }
+  }
+
+  /**
+   * Статическая сборка (GitHub Pages): сервера нет, заявка открывается в WhatsApp готовым сообщением.
+   * Заявка считается отправленной, когда клиент нажмет "Отправить" в WhatsApp, и форма говорит об этом прямо.
+   */
+  async function sendViaWhatsapp() {
+    // ловушка для ботов: настоящий пользователь это поле не видит
+    if (hp) {
+      setStatus("whatsapp");
+      return;
+    }
+    try {
+      const msg = await buildStaticLead({
+        type,
+        name: name.trim(),
+        phone,
+        method: showMethod ? method : "whatsapp",
+        locale,
+        calc,
+        attribution: getAttribution(),
+      });
+      setWaUrl(msg.url);
+      setStatus("whatsapp");
+      track("lead_submit", { type, locale });
+      if (calc)
+        track("calc_lead_submit", { kind: calc.kind, type: calc.input.objectType, area: areaBucket(calc.input.area), class: calc.input.finishClass });
+      if (type === "gift") {
+        track("gift_submit");
+        if (gift.available) {
+          // прайс-лист скачивается сразу, не дожидаясь сообщения
+          const a = document.createElement("a");
+          a.href = asset(gift.file);
+          a.download = "RUH-Construction-price-list.pdf";
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          track("gift_download");
+        }
+      }
+      // на телефоне откроется приложение WhatsApp; если браузер блокирует окно, остается кнопка ниже
+      window.open(msg.url, "_blank", "noopener,noreferrer");
+    } catch {
+      setStatus("error");
+    }
+  }
+
+  if (status === "whatsapp") {
+    return (
+      <div className={`lead-success ${dark ? "on-dark" : ""}`} role="status" aria-live="polite">
+        <CheckCircle size={40} weight="fill" aria-hidden="true" className="lead-success__icon" />
+        <p>{t("staticSuccess")}</p>
+        {waUrl && (
+          <a
+            className="btn btn-gold"
+            href={waUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("click_whatsapp", { place: "form_static" })}
+          >
+            <WhatsappLogo size={20} aria-hidden="true" />
+            {t("staticOpen")}
+          </a>
+        )}
+      </div>
+    );
   }
 
   if (status === "success" && successMessage) {

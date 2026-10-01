@@ -3,6 +3,10 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
+// Статическая выгрузка для GitHub Pages: STATIC_EXPORT=1 npm run build (см. scripts/build-static.mjs)
+const isStatic = process.env.STATIC_EXPORT === "1";
+const basePath = isStatic ? (process.env.BASE_PATH ?? "").replace(/\/$/, "") : "";
+
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
@@ -21,22 +25,36 @@ const nextConfig: NextConfig = {
   devIndicators: false,
   // PDF-генерация живет только на сервере
   serverExternalPackages: ["@react-pdf/renderer"],
-  // шрифты и логотип для PDF должны попасть в serverless-функцию на Vercel
-  outputFileTracingIncludes: {
-    "/api/calculator/pdf": ["./src/fonts/pdf/**", "./public/brand/logo-h-light.png"],
-    "/api/lead": ["./public/downloads/**"],
-  },
   experimental: {
     optimizePackageImports: ["@phosphor-icons/react", "motion"],
   },
-  async headers() {
-    return [
-      { source: "/:path*", headers: securityHeaders },
-      { source: "/img/:path*", headers: staticAssetCache },
-      { source: "/brand/:path*", headers: staticAssetCache },
-      { source: "/downloads/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=3600" }] },
-    ];
+  env: {
+    NEXT_PUBLIC_STATIC_EXPORT: isStatic ? "1" : "",
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
+  ...(isStatic
+    ? {
+        // GitHub Pages: набор файлов в папке out, каждая страница как каталог с index.html
+        output: "export" as const,
+        trailingSlash: true,
+        basePath: basePath || undefined,
+        images: { unoptimized: true },
+      }
+    : {
+        // шрифты и логотип для PDF должны попасть в serverless-функцию на Vercel
+        outputFileTracingIncludes: {
+          "/api/calculator/pdf": ["./src/fonts/pdf/**", "./public/brand/logo-h-light.png"],
+          "/api/lead": ["./public/downloads/**"],
+        },
+        async headers() {
+          return [
+            { source: "/:path*", headers: securityHeaders },
+            { source: "/img/:path*", headers: staticAssetCache },
+            { source: "/brand/:path*", headers: staticAssetCache },
+            { source: "/downloads/:path*", headers: [{ key: "Cache-Control", value: "public, max-age=3600" }] },
+          ];
+        },
+      }),
 };
 
 export default withNextIntl(nextConfig);

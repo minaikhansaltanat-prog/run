@@ -6,6 +6,7 @@ import { getMessages, getTranslations, setRequestLocale } from "next-intl/server
 import { routing, localeMeta, type Locale } from "@/i18n/routing";
 import { buildMetadata, SITE_URL } from "@/lib/seo";
 import { pick } from "@/lib/pick";
+import { asset } from "@/lib/site-mode";
 import { site } from "@config/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -59,7 +60,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const t = await getTranslations({ locale, namespace: "meta" });
   return {
     ...buildMetadata({ locale, path: "/", title: t("title"), description: t("description"), siteName: t("siteName") }),
-    manifest: "/manifest.webmanifest",
+    manifest: asset("/manifest.webmanifest"),
   };
 }
 
@@ -92,7 +93,11 @@ export default async function LocaleLayout({ children, params }: { children: Rea
   };
 
   return (
-    <html lang={localeMeta[locale as Locale].htmlLang} className={`${onest.variable} ${playfair.variable}`}>
+    <html
+      lang={localeMeta[locale as Locale].htmlLang}
+      className={`${onest.variable} ${playfair.variable}`}
+      style={{ ["--grain" as string]: `url("${asset("/brand/grain.webp")}")` }}
+    >
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <a className="skip-link" href="#main">

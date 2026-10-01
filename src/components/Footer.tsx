@@ -3,6 +3,7 @@ import { FacebookLogo, InstagramLogo, MapPin, Phone, TelegramLogo, TiktokLogo, W
 import { Link } from "@/i18n/navigation";
 import { MapFacade } from "@/components/MapFacade";
 import { TrackedLink } from "@/components/TrackedLink";
+import { asset } from "@/lib/site-mode";
 import { site, whatsappLink } from "@config/site";
 import { FooterCta } from "@/components/FooterCta";
 
@@ -24,8 +25,8 @@ export async function Footer() {
       <div className="container-x footer__grid">
         <div className="footer__about">
           <img
-            src="/brand/seal-320.webp"
-            srcSet="/brand/seal-320.webp 1x, /brand/seal-640.webp 2x"
+            src={asset("/brand/seal-320.webp")}
+            srcSet={`${asset("/brand/seal-320.webp")} 1x, ${asset("/brand/seal-640.webp")} 2x`}
             width="148"
             height="148"
             alt="RUH Construction"

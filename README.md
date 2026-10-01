@@ -15,12 +15,15 @@ npm run dev                  # http://localhost:3000
 
 Продакшен-сборка локально: `npm run build && npm start`.
 Для скриншотов и проверок в рабочей папке есть `node serve.mjs` (localhost:3000) и `node screenshot.mjs http://localhost:3000`.
+Проверка версии для GitHub Pages: `npm run build:static && npm run serve:static` -> http://localhost:3000/run/ru/.
 
 ## Команды
 
 | Команда | Что делает |
 |---------|-----------|
-| `npm run dev` / `build` / `start` | разработка, сборка, запуск |
+| `npm run dev` / `build` / `start` | разработка, сборка, запуск (полная версия с сервером) |
+| `npm run build:static` | статическая версия для GitHub Pages в папку `out/` (без сервера) |
+| `npm run serve:static` | локально отдает `out/` так же, как GitHub Pages (подпапка `/run`, 404.html) |
 | `npm run typecheck` | проверка типов |
 | `npm test` | 39 unit-тестов (движок калькулятора, состояние, телефон) |
 | `npm run lint:content` | сверка ключей ru/kk, пустые и непереведенные строки |
@@ -41,7 +44,28 @@ npm run dev                  # http://localhost:3000
 | `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | аналитика, грузится только после согласия на cookies |
 | `ALLOW_PRICING_PREVIEW` | показывать калькулятор с тестовыми ценами на preview (`?pricing=preview`); в production пусто |
 
-## Выкладка на Vercel
+## Выкладка на GitHub Pages (основной способ, бесплатно)
+
+Сайт собирается как набор статических файлов и публикуется автоматически при каждом `git push` в `main`
+(workflow `.github/workflows/pages.yml`). Адрес: `https://<владелец>.github.io/<репозиторий>/`, сейчас https://minaikhansaltanat-prog.github.io/run/.
+
+Включить один раз: GitHub -> **Settings -> Pages -> Build and deployment -> Source: GitHub Actions** (не "Deploy from a branch").
+Дальше каждый push собирает и выкладывает сайт за 3-5 минут; ход сборки виден во вкладке **Actions**.
+
+Что отличается от полной (серверной) версии, потому что у GitHub Pages нет сервера:
+
+| | GitHub Pages | Сервер (Vercel, свой Node) |
+|---|---|---|
+| Заявки из форм | открывается WhatsApp с готовым сообщением, клиент нажимает "отправить" | сразу в Telegram через бота, без действий клиента |
+| PDF-смета | нет (появится кнопка только в серверной версии) | есть |
+| Адреса | `/ru/`, `/kk/` (оба языка с префиксом), корень `/` выбирает язык по браузеру | русский без префикса, казахский `/kk` |
+| Заголовки безопасности (HSTS и др.) | задает GitHub | задает `next.config.ts` |
+| Свой домен | подключается в Settings -> Pages; тогда `BASE_PATH=""` и `NEXT_PUBLIC_SITE_URL=https://домен` в workflow | да |
+
+Переменные для аналитики в Pages задаются как Variables: Settings -> Secrets and variables -> Actions -> Variables (`NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`).
+Токен Telegram-бота в статический сайт класть нельзя: он стал бы виден всем.
+
+## Выкладка с сервером (Vercel или свой Node), если понадобится Telegram и PDF
 
 1. Импортировать репозиторий в Vercel (Framework: Next.js, команды по умолчанию).
 2. Добавить переменные окружения из таблицы выше (Production).
@@ -66,7 +90,8 @@ config/      сайт, прайс (тестовый), пресет цветок�
 content/     тексты ru/kk, объекты, отзывы, данные галереи
 docs/        открытые вопросы, дизайн-решения, отчет по фото, проверка шрифтов
 public/      img (оптимизированные фото), brand (логотипы), downloads
-scripts/     фото-конвейер, проверки, шаблон и импорт прайса
+scripts/     фото-конвейер, проверки, шаблон и импорт прайса, build-static и serve-static (GitHub Pages)
+.github/     workflow выкладки на GitHub Pages
 src/app/     страницы ([locale]), API (заявки, PDF сметы), стили
 src/components/  секции, шапка, подвал, форма, калькулятор, галерея
 src/lib/     движок сметы, аналитика, сервер (rate limit, Telegram, PDF)
@@ -81,5 +106,6 @@ src/lib/     движок сметы, аналитика, сервер (rate lim
 
 ## Безопасность и приватность
 
-Форма защищена honeypot-полем, проверкой времени заполнения и ограничением частоты; данные валидируются zod на сервере. Токены только в окружении.
+В серверной версии форма защищена honeypot-полем, проверкой времени заполнения и ограничением частоты; данные валидируются zod на сервере. Токены только в окружении.
+В версии для GitHub Pages сервера нет: заявка собирается в браузере и уходит в WhatsApp, секретов на сайте нет.
 Аналитика и пиксель не грузятся до согласия на cookies. Текст страницы конфиденциальности шаблонный: перед запуском нужна проверка юриста.

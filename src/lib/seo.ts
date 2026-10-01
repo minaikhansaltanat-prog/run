@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
 import { localeMeta, routing, type Locale } from "@/i18n/routing";
+import { STATIC_SITE } from "@/lib/site-mode";
 
+/** Адрес сайта без слеша на конце. На GitHub Pages включает подпапку: https://имя.github.io/run */
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
 
-/** ru без префикса, kk с /kk */
+/** ru без префикса, kk с /kk (в статической сборке префикс у обоих языков и слеш на конце, как отдает GitHub Pages) */
 export function localizedPath(locale: Locale, path: string): string {
   const p = path === "/" ? "" : path;
+  if (STATIC_SITE) return `/${locale}${p}/`;
   return locale === routing.defaultLocale ? p || "/" : `/${locale}${p}`;
 }
 

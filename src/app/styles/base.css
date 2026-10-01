@@ -30,6 +30,7 @@
   --z-lightbox: 80;
   --z-skip: 100;
 
+  /* --grain задается в корневом layout: путь зависит от подпапки сайта (GitHub Pages) */
   --grain: url("/brand/grain.webp");
 }
 

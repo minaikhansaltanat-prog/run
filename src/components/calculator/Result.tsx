@@ -10,6 +10,7 @@ import { formatNumber, formatRange } from "@/lib/estimate/format";
 import { withCurrency } from "./money";
 import { H } from "./heading";
 import { track, areaBucket } from "@/lib/analytics";
+import { STATIC_SITE } from "@/lib/site-mode";
 import { whatsappLink } from "@config/site";
 import {
   CLASSES,
@@ -25,6 +26,8 @@ type Ok = Extract<PublicEstimate, { status: "ok" }> & { priced: true };
 
 /** Скачивание PDF-сметы: сервер сам пересчитывает по своему прайсу */
 async function fetchPdf(input: EstimateInput, locale: string, calcId: string | null, name?: string): Promise<boolean> {
+  // статическая сборка (GitHub Pages) не умеет собирать PDF: нужен серверный деплой
+  if (STATIC_SITE) return false;
   try {
     const res = await fetch("/api/calculator/pdf", {
       method: "POST",

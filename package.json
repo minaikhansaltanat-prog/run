@@ -13,6 +13,8 @@
     "photos": "node scripts/enhance-photos.mjs",
     "check:overflow": "node scripts/check-overflow.mjs",
     "check:contrast": "node scripts/check-contrast.mjs",
+    "build:static": "node scripts/build-static.mjs",
+    "serve:static": "node scripts/serve-static.mjs",
     "pricing:template": "node scripts/pricing-template.mjs",
     "pricing:import": "node scripts/pricing-import.mjs"
   },

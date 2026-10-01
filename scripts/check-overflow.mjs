@@ -32,7 +32,10 @@ try {
         if (m.type() === "error") problems.push(`console: ${m.text().slice(0, 200)}`);
       });
       page.on("pageerror", (e) => problems.push(`pageerror: ${String(e).slice(0, 200)}`));
-      page.on("requestfailed", (r) => problems.push(`request failed: ${r.url().slice(0, 120)}`));
+      // отмененные запросы (ERR_ABORTED: роутер сам прерывает предзагрузку) не считаются ошибкой
+      page.on("requestfailed", (r) => {
+        if (!String(r.failure()?.errorText).includes("ERR_ABORTED")) problems.push(`request failed: ${r.url().slice(0, 120)}`);
+      });
       page.on("response", (r) => {
         if (r.status() >= 400 && !r.url().includes("favicon")) problems.push(`HTTP ${r.status()}: ${r.url().slice(0, 120)}`);
       });

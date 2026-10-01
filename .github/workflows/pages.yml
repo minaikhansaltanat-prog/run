@@ -1,0 +1,61 @@
+# Выкладка сайта на GitHub Pages: при каждом push в main собирается статическая версия (npm run build:static)
+# и публикуется на https://<владелец>.github.io/<репозиторий>/
+# Один раз включить: GitHub -> Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      # браузер для проверочных скриптов на сервере не нужен
+      PUPPETEER_SKIP_DOWNLOAD: "1"
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Tests
+        run: npm test
+
+      - name: Build static site
+        run: npm run build:static
+        env:
+          # сайт живет в подпапке репозитория: /run. На своем домене: BASE_PATH="" и NEXT_PUBLIC_SITE_URL=https://домен
+          BASE_PATH: /${{ github.event.repository.name }}
+          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
+          NEXT_PUBLIC_META_PIXEL_ID: ${{ vars.NEXT_PUBLIC_META_PIXEL_ID }}
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

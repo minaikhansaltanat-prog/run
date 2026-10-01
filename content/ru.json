@@ -553,6 +553,8 @@
     "success": "Заявка принята. Мы свяжемся с вами, чтобы уточнить детали",
     "error": "Не получилось отправить. Напишите нам в WhatsApp",
     "errorButton": "Написать в WhatsApp",
+    "staticSuccess": "Мы открыли WhatsApp с готовым сообщением. Нажмите кнопку отправки в WhatsApp, и заявка дойдет до нас",
+    "staticOpen": "Открыть WhatsApp еще раз",
     "whatsappText": "Здравствуйте! Хочу рассчитать ремонт. Пишу с сайта RUH Construction.",
     "validation": {
       "name": "Укажите имя",

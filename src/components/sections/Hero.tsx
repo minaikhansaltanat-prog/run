@@ -2,9 +2,10 @@ import { getTranslations } from "next-intl/server";
 import { ArrowRight, ClipboardText, ShieldCheck, Star, Ruler } from "@phosphor-icons/react/dist/ssr";
 import { Link } from "@/i18n/navigation";
 import { heroes } from "@/lib/gallery-data";
+import { asset } from "@/lib/site-mode";
 import { site } from "@config/site";
 
-const srcset = (file: string, widths: number[], ext: string) => widths.map((w) => `${file}-${w}.${ext} ${w}w`).join(", ");
+const srcset = (file: string, widths: number[], ext: string) => widths.map((w) => `${asset(file)}-${w}.${ext} ${w}w`).join(", ");
 
 /**
  * Hero (ТЗ 6.2): фото на весь экран, слева текст, справа стеклянные бейджи.
@@ -31,7 +32,7 @@ export async function Hero() {
             <source type="image/webp" srcSet={srcset(d.file, d.widths, "webp")} sizes="100vw" />
             <img
               className="hero__img"
-              src={`${d.file}-1600.jpg`}
+              src={`${asset(d.file)}-1600.jpg`}
               srcSet={srcset(d.file, d.widths, "jpg")}
               sizes="100vw"
               width={d.width}

@@ -5,6 +5,9 @@ import { galleryItems } from "@/lib/gallery-data";
 import { objects } from "@/lib/objects-data";
 import { SITE_URL } from "@/lib/seo";
 
+// статический файл: нужен для сборки output: export (GitHub Pages)
+export const dynamic = "force-static";
+
 /** sitemap.xml: все страницы на обоих языках с hreflang, плюс картинки галереи (ТЗ раздел 9, 14.7) */
 export default function sitemap(): MetadataRoute.Sitemap {
   const paths = ["/", "/gallery", "/calculator", "/privacy", ...objects.map((o) => `/objects/${o.slug}`)];

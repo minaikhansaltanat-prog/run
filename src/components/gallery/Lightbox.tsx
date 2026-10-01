@@ -8,6 +8,7 @@ import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
 import { lockScroll, unlockScroll } from "@/lib/scroll-lock";
 import { track } from "@/lib/analytics";
+import { asset } from "@/lib/site-mode";
 import type { GalleryTile } from "./types";
 
 interface Props {
@@ -23,7 +24,7 @@ function preload(tile: GalleryTile | undefined) {
   if (!tile) return;
   const w = tile.widths.includes(1600) ? 1600 : tile.widths[tile.widths.length - 1];
   const img = new Image();
-  img.src = `${tile.file}-${w}.webp`;
+  img.src = `${asset(tile.file)}-${w}.webp`;
 }
 
 export function Lightbox({ items, index, onIndex, onClose }: Props) {
