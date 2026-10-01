@@ -1,9 +1,9 @@
 # RUH Construction: сайт
 
-Сайт ремонтной компании RUH Construction (Алматы): лендинг из 10 блоков, смета-калькулятор, галерея, страницы объектов.
+Сайт ремонтной компании RUH Construction (Алматы): лендинг из 10 блоков, галерея, страницы объектов, подарок (прайс-лист).
 Языки: русский (основной, без префикса) и казахский (`/kk`).
 
-Стек: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 + собственные CSS, next-intl, zod, @react-pdf/renderer, sharp.
+Стек: Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS 4 + собственные CSS, next-intl, zod, sharp.
 
 ## Быстрый старт
 
@@ -25,11 +25,10 @@ npm run dev                  # http://localhost:3000
 | `npm run build:static` | статическая версия для GitHub Pages в папку `out/` (без сервера) |
 | `npm run serve:static` | локально отдает `out/` так же, как GitHub Pages (подпапка `/run`, 404.html) |
 | `npm run typecheck` | проверка типов |
-| `npm test` | 39 unit-тестов (движок калькулятора, состояние, телефон) |
+| `npm test` | unit-тесты (маска и проверка телефона) |
 | `npm run lint:content` | сверка ключей ru/kk, пустые и непереведенные строки |
 | `npm run check:overflow` | нет горизонтального переполнения на 360-1920 px (нужен запущенный сайт) |
 | `npm run check:taps` | ничто не перекрывает кнопки и ссылки (плавающая кнопка, шапка, панель) на телефоне и компьютере |
-| `npm run check:calc` | калькулятор проходится пальцем (эмуляция телефона), плавающая кнопка открывается и закрывается |
 | `npm run check:contrast` | контраст текста по токенам палитры |
 | `npm run photos` | конвейер фото: апскейл, цветокоррекция, AVIF/WebP/JPEG в `public/img` |
 | `npm run pricing:template` | создать `pricing-template.xlsx` для клиента |
@@ -44,7 +43,6 @@ npm run dev                  # http://localhost:3000
 | `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | куда приходят заявки; без них форма предлагает WhatsApp |
 | `NEXT_PUBLIC_SITE_URL` | адрес сайта (canonical, sitemap, Open Graph) |
 | `NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID` | аналитика, грузится только после согласия на cookies |
-| `ALLOW_PRICING_PREVIEW` | показывать калькулятор с тестовыми ценами на preview (`?pricing=preview`); в production пусто |
 
 ## Выкладка на GitHub Pages (основной способ, бесплатно)
 
@@ -59,7 +57,6 @@ npm run dev                  # http://localhost:3000
 | | GitHub Pages | Сервер (Vercel, свой Node) |
 |---|---|---|
 | Заявки из форм | открывается WhatsApp с готовым сообщением, клиент нажимает "отправить" | сразу в Telegram через бота, без действий клиента |
-| PDF-смета | нет (появится кнопка только в серверной версии) | есть |
 | Адреса | `/ru/`, `/kk/` (оба языка с префиксом), корень `/` выбирает язык по браузеру | русский без префикса, казахский `/kk` |
 | Заголовки безопасности (HSTS и др.) | задает GitHub | задает `next.config.ts` |
 | Свой домен | подключается в Settings -> Pages; тогда `BASE_PATH=""` и `NEXT_PUBLIC_SITE_URL=https://домен` в workflow | да |
@@ -67,7 +64,7 @@ npm run dev                  # http://localhost:3000
 Переменные для аналитики в Pages задаются как Variables: Settings -> Secrets and variables -> Actions -> Variables (`NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`).
 Токен Telegram-бота в статический сайт класть нельзя: он стал бы виден всем.
 
-## Выкладка с сервером (Vercel или свой Node), если понадобится Telegram и PDF
+## Выкладка с сервером (Vercel или свой Node), если понадобится прямая отправка заявок в Telegram
 
 1. Импортировать репозиторий в Vercel (Framework: Next.js, команды по умолчанию).
 2. Добавить переменные окружения из таблицы выше (Production).
@@ -79,7 +76,7 @@ npm run dev                  # http://localhost:3000
 - **Тексты ru/kk**: `content/ru.json`, `content/kk.json` (одинаковые ключи; `npm run lint:content` ловит расхождения).
 - **Контакты, ссылки, подарок**: `config/site.ts`.
 - **Прайс-лист (подарок)**: положить PDF в `public/downloads/ruh-price-list.pdf` и поставить `gift.available: true` в `config/site.ts`.
-- **Цены калькулятора**: клиент заполняет `pricing-template.xlsx` -> `npm run pricing:import -- файл.xlsx --write --allow-approved`. Пока `pricingApproved: false`, цифры на сайте не показываются; пересчет цены всегда делается на сервере.
+- **Смета-калькулятор** убран по решению клиента. Последняя версия с ним сохранена в git-теге `calculator-v1` (`git checkout calculator-v1`).
 - **Объекты**: `content/objects.json` (+ тексты в `content/*.json`, раздел `objects`). Площадь/срок/год заполнять только по подтвержденным данным.
 - **Отзывы**: `content/reviews.json` (только с разрешения авторов).
 - **Фото**: исходники в `assets/raw`, список и порядок в `config/photos.json`, затем `npm run photos`. Результат попадает в `public/img` и `content/gallery.json`.
@@ -88,15 +85,15 @@ npm run dev                  # http://localhost:3000
 ## Структура
 
 ```
-config/      сайт, прайс (тестовый), пресет цветокоррекции, список фото
+config/      сайт, пресет цветокоррекции, список фото
 content/     тексты ru/kk, объекты, отзывы, данные галереи
 docs/        открытые вопросы, дизайн-решения, отчет по фото, проверка шрифтов
 public/      img (оптимизированные фото), brand (логотипы), downloads
-scripts/     фото-конвейер, проверки, шаблон и импорт прайса, build-static и serve-static (GitHub Pages)
+scripts/     фото-конвейер, проверки, build-static и serve-static (GitHub Pages)
 .github/     workflow выкладки на GitHub Pages
-src/app/     страницы ([locale]), API (заявки, PDF сметы), стили
-src/components/  секции, шапка, подвал, форма, калькулятор, галерея
-src/lib/     движок сметы, аналитика, сервер (rate limit, Telegram, PDF)
+src/app/     страницы ([locale]), API заявок (серверная версия), стили
+src/components/  секции, шапка, подвал, форма заявки, подарок, галерея
+src/lib/     аналитика, телефон, SEO, сервер (rate limit, Telegram)
 ```
 
 ## Документы

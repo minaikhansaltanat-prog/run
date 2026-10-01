@@ -1,5 +1,5 @@
 "use client";
-// Общая форма заявки: короткая (имя, телефон), подарок (прайс-лист) и заявка из калькулятора.
+// Общая форма заявки: короткая (имя, телефон) и подарок (прайс-лист).
 // Защита: honeypot, ловушка по времени, маска телефона, валидация; запасной путь через WhatsApp.
 import { useId, useRef, useState, type FormEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
@@ -7,24 +7,19 @@ import { CheckCircle, WhatsappLogo } from "@phosphor-icons/react";
 import { Link } from "@/i18n/navigation";
 import { getAttribution } from "@/lib/attribution";
 import { maskPhoneOnChange, isValidPhone } from "@/lib/phone";
-import { track, areaBucket } from "@/lib/analytics";
+import { track } from "@/lib/analytics";
 import { asset, STATIC_SITE } from "@/lib/site-mode";
 import { buildStaticLead } from "@/lib/lead-static";
+import type { LeadMethod, LeadType } from "@/lib/lead-labels";
 import { gift, whatsappLink } from "@config/site";
-import type { EstimateInput } from "@/lib/estimate/types";
-
-type Method = "whatsapp" | "telegram" | "call";
 
 export interface LeadResult {
   ok: true;
-  id: string | null;
-  priced?: boolean;
   gift?: { available: boolean; file: string | null };
 }
 
 interface Props {
-  type: "short" | "gift" | "calc";
-  calc?: { kind: "pdf" | "measure" | "manual"; input: EstimateInput };
+  type: LeadType;
   submitLabel: string;
   sendingLabel: string;
   /** сообщение внутри формы после успеха (если не нужно, форма просто вызывает onSuccess) */
@@ -39,7 +34,6 @@ interface Props {
 
 export function LeadForm({
   type,
-  calc,
   submitLabel,
   sendingLabel,
   successMessage,
@@ -58,7 +52,7 @@ export function LeadForm({
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [method, setMethod] = useState<Method>("whatsapp");
+  const [method, setMethod] = useState<LeadMethod>("whatsapp");
   const [consent, setConsent] = useState(false);
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<{ name?: string; phone?: string; consent?: string }>({});
@@ -90,7 +84,6 @@ export function LeadForm({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           type,
-          ...(calc ? { kind: calc.kind, input: calc.input } : {}),
           name: name.trim(),
           phone,
           method: showMethod ? method : "whatsapp",
@@ -115,27 +108,24 @@ export function LeadForm({
    * Статическая сборка (GitHub Pages): сервера нет, заявка открывается в WhatsApp готовым сообщением.
    * Заявка считается отправленной, когда клиент нажмет "Отправить" в WhatsApp, и форма говорит об этом прямо.
    */
-  async function sendViaWhatsapp() {
+  function sendViaWhatsapp() {
     // ловушка для ботов: настоящий пользователь это поле не видит
     if (hp) {
       setStatus("whatsapp");
       return;
     }
     try {
-      const msg = await buildStaticLead({
+      const msg = buildStaticLead({
         type,
         name: name.trim(),
         phone,
         method: showMethod ? method : "whatsapp",
         locale,
-        calc,
         attribution: getAttribution(),
       });
       setWaUrl(msg.url);
       setStatus("whatsapp");
       track("lead_submit", { type, locale });
-      if (calc)
-        track("calc_lead_submit", { kind: calc.kind, type: calc.input.objectType, area: areaBucket(calc.input.area), class: calc.input.finishClass });
       if (type === "gift") {
         track("gift_submit");
         if (gift.available) {

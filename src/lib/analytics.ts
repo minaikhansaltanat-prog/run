@@ -10,21 +10,9 @@ export type AnalyticsEvent =
   | "gallery_open"
   | "gallery_filter"
   | "gallery_load_more"
-  | "gallery_to_calc"
   | "gift_open"
   | "gift_submit"
-  | "gift_download"
-  | "calc_open"
-  | "calc_start"
-  | "calc_step_view"
-  | "calc_preset_change"
-  | "calc_result_view"
-  | "calc_class_compare_click"
-  | "calc_cta_pdf_click"
-  | "calc_lead_submit"
-  | "calc_pdf_download"
-  | "calc_whatsapp_click"
-  | "calc_manual_mode_shown";
+  | "gift_download";
 
 declare global {
   interface Window {
@@ -45,14 +33,4 @@ export function track(event: AnalyticsEvent, params: Record<string, string | num
   } catch {
     /* аналитика не должна ломать интерфейс */
   }
-}
-
-/** Диапазоны вместо точных значений: меньше шума в отчетах и не уходят персональные данные */
-export function areaBucket(area: number): string {
-  if (area < 40) return "20-39";
-  if (area < 60) return "40-59";
-  if (area < 80) return "60-79";
-  if (area < 120) return "80-119";
-  if (area < 200) return "120-199";
-  return "200+";
 }

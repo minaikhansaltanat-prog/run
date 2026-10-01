@@ -87,7 +87,7 @@ export default async function ObjectPage({ params }: { params: Promise<{ locale:
               <h2 className="h3">{t("wantSame")}</h2>
               <p className="lead">{t("wantSameText")}</p>
             </div>
-            <Link href={{ pathname: "/", query: { type: obj.calcType }, hash: "calculator" }} className="btn btn-gold btn-lg">
+            <Link href={{ pathname: "/", hash: "contacts" }} className="btn btn-gold btn-lg">
               {tw("ctaTileButton")}
               <ArrowRight size={20} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
             </Link>

@@ -74,7 +74,7 @@ export async function Works() {
           <aside className="work-cta band-dark on-dark" data-reveal style={{ ["--i" as string]: objects.length }}>
             <h4 className="work-cta__title">{t("ctaTileTitle")}</h4>
             <p className="work-cta__text">{t("ctaTileText")}</p>
-            <Link href={{ pathname: "/", hash: "calculator" }} className="btn btn-gold">
+            <Link href={{ pathname: "/", hash: "contacts" }} className="btn btn-gold">
               {t("ctaTileButton")}
               <ArrowRight size={18} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
             </Link>

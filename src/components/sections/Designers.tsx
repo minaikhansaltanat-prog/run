@@ -1,10 +1,11 @@
 import { getTranslations } from "next-intl/server";
 import { ArrowRight } from "@phosphor-icons/react/dist/ssr";
-import { Link } from "@/i18n/navigation";
 import { Photo } from "@/components/ui/Photo";
+import { TrackedLink } from "@/components/TrackedLink";
 import { getItem } from "@/lib/gallery-data";
+import { whatsappLink } from "@config/site";
 
-/** "Для дизайнеров и архитекторов" (ТЗ 6.7): золотая карточка на светлом фоне, кнопка ведет в калькулятор с "дизайн-проект есть" */
+/** "Для дизайнеров и архитекторов" (ТЗ 6.7): золотая карточка на светлом фоне, кнопка пишет в WhatsApp: "у нас есть дизайн-проект" */
 export async function Designers() {
   const t = await getTranslations("designers");
   const photo = getItem("ph-0006");
@@ -30,10 +31,16 @@ export async function Designers() {
             </h2>
             <p className="designers__text">{t("text")}</p>
             <p className="designers__line">{t("line")}</p>
-            <Link href={{ pathname: "/", query: { project: "yes" }, hash: "calculator" }} className="btn btn-dark btn-lg designers__cta">
+            <TrackedLink
+              href={whatsappLink(t("whatsappText"))}
+              event="click_whatsapp"
+              place="designers"
+              className="btn btn-dark btn-lg designers__cta"
+              external
+            >
               {t("cta")}
               <ArrowRight size={20} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
-            </Link>
+            </TrackedLink>
           </div>
           {photo && (
             <div className="designers__media">

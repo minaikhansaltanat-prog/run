@@ -6,7 +6,7 @@ import { track } from "@/lib/analytics";
 import { site } from "@config/site";
 
 /**
- * Нижняя липкая панель на телефоне (ТЗ раздел 5): Позвонить и Рассчитать.
+ * Нижняя липкая панель на телефоне (ТЗ раздел 5): Позвонить и Оставить заявку.
  * WhatsApp и Telegram вынесены в плавающую кнопку справа (она стоит над панелью).
  */
 export function MobileBar() {
@@ -17,8 +17,8 @@ export function MobileBar() {
         <Phone size={20} weight="regular" aria-hidden="true" />
         {t("call")}
       </a>
-      <Link href={{ pathname: "/", hash: "calculator" }} className="btn btn-gold mobile-bar__calc">
-        {t("calc")}
+      <Link href={{ pathname: "/", hash: "contacts" }} className="btn btn-gold mobile-bar__request">
+        {t("request")}
         <ArrowRight size={18} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
       </Link>
     </div>

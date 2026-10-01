@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, TelegramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
-import { Link } from "@/i18n/navigation";
+import { Phone, TelegramLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import { LeadForm } from "@/components/LeadForm";
 import { ClientMessages } from "@/components/ClientMessages";
 import { GiftLink } from "@/components/GiftBanner";
@@ -27,10 +26,10 @@ export async function FinalCta() {
           </h2>
           <p className="lead">{t("text")}</p>
           <div className="final-cta__buttons">
-            <Link href={{ pathname: "/", hash: "calculator" }} className="btn btn-gold btn-lg">
-              {t("calc")}
-              <ArrowRight size={20} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
-            </Link>
+            <TrackedLink href={site.phone.tel} event="click_phone" place="final_cta" className="btn btn-gold btn-lg">
+              <Phone size={22} weight="regular" aria-hidden="true" />
+              {t("call")}
+            </TrackedLink>
             <TrackedLink
               href={whatsappLink(t("whatsappText"))}
               event="click_whatsapp"

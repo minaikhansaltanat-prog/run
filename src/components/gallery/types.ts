@@ -11,7 +11,6 @@ export interface GalleryTile {
   objectType: "apartment" | "commercial";
   objectSlug: string | null;
   objectTitle: string | null;
-  calcType: string;
   dominant: string;
   lqip: string;
   alt: string;

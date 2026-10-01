@@ -17,7 +17,7 @@ export async function Footer() {
   const ts = await getTranslations("services");
   const tf = await getTranslations("floating");
   const year = new Date().getFullYear();
-  const nav = ["services", "works", "calculator", "reviews"] as const;
+  const nav = ["services", "works", "reviews"] as const;
   const services = ["apartments", "commercial", "project", "supply", "construction"] as const;
 
   return (

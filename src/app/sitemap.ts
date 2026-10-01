@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 
 /** sitemap.xml: все страницы на обоих языках с hreflang, плюс картинки галереи (ТЗ раздел 9, 14.7) */
 export default function sitemap(): MetadataRoute.Sitemap {
-  const paths = ["/", "/gallery", "/calculator", "/privacy", ...objects.map((o) => `/objects/${o.slug}`)];
+  const paths = ["/", "/gallery", "/privacy", ...objects.map((o) => `/objects/${o.slug}`)];
   const now = new Date();
   const out: MetadataRoute.Sitemap = [];
   for (const path of paths) {

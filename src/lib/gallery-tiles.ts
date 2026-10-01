@@ -16,7 +16,6 @@ export async function getGalleryTiles(locale: string): Promise<GalleryTile[]> {
     objectType: i.objectType,
     objectSlug: i.objectSlug,
     objectTitle: i.objectSlug ? to(`${i.objectSlug}.title`) : null,
-    calcType: i.objectType === "commercial" ? "office" : "apartment_new",
     dominant: i.dominant,
     lqip: i.lqip,
     alt: tp(i.id),

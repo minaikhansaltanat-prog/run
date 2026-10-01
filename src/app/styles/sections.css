@@ -334,10 +334,8 @@
   box-shadow: 0 10px 24px rgba(255, 199, 0, 0.35);
 }
 
-/* ---------- калькулятор: обертка секции ---------- */
-.calc-wrap {
-  margin-top: 36px;
-}
-.calc-gift {
-  margin-top: 28px;
+/* ---------- подарок (прайс-лист): отдельная полоса между "Работами" и "Почему RUH" ---------- */
+.gift-section {
+  position: relative;
+  padding-block: clamp(36px, 6vw, 72px);
 }

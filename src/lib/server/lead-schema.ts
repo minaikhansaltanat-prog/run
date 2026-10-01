@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { estimateInputSchema } from "@/lib/estimate/schema";
 import { isValidPhone } from "@/lib/phone";
 
 const attribution = z
@@ -15,7 +14,8 @@ const attribution = z
   })
   .partial();
 
-const base = z.object({
+export const leadSchema = z.object({
+  type: z.enum(["short", "gift"]),
   name: z.string().trim().min(2).max(80),
   phone: z.string().max(40).refine(isValidPhone, "phone"),
   method: z.enum(["whatsapp", "telegram", "call"]),
@@ -27,15 +27,5 @@ const base = z.object({
   /** сколько мс форма была открыта до отправки (слишком быстро = бот) */
   elapsedMs: z.number().int().min(0).max(86_400_000).optional(),
 });
-
-export const leadSchema = z.discriminatedUnion("type", [
-  base.extend({ type: z.literal("short") }),
-  base.extend({ type: z.literal("gift") }),
-  base.extend({
-    type: z.literal("calc"),
-    kind: z.enum(["pdf", "measure", "manual"]),
-    input: estimateInputSchema,
-  }),
-]);
 
 export type LeadPayload = z.infer<typeof leadSchema>;

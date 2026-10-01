@@ -15,8 +15,7 @@ const args = Object.fromEntries(
 );
 const base = args.base || "http://localhost:3000";
 const paths = (
-  args.paths ||
-  "/,/kk,/gallery,/kk/gallery,/calculator,/kk/calculator,/objects/kvartira-svetlyy-interer,/kk/objects/kvartira-sanuzly-i-holl,/privacy,/kk/privacy"
+  args.paths || "/,/kk,/gallery,/kk/gallery,/objects/kvartira-svetlyy-interer,/kk/objects/kvartira-sanuzly-i-holl,/privacy,/kk/privacy"
 ).split(",");
 const widths = (args.widths || "320,360,390,768,1024,1440,1920").split(",").map(Number);
 

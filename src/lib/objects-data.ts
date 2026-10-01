@@ -3,7 +3,6 @@ import objectsJson from "@content/objects.json";
 export interface ObjectItem {
   slug: string;
   type: "apartment" | "commercial";
-  calcType: string;
   cover: string;
   area: number | null;
   months: number | null;

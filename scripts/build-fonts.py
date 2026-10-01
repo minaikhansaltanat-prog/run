@@ -86,24 +86,6 @@ def build(name, out_name, wght_range):
     return out_name, len(data), font
 
 
-def build_static_ttf(name, out_name, wght):
-    """Статический TTF для PDF (react-pdf не умеет переменные шрифты): подмножество + фиксированный вес."""
-    font = TTFont(fetch(name), lazy=False)
-    opts = subset.Options()
-    opts.layout_features = ["kern", "liga", "lnum", "tnum"]
-    opts.name_IDs = [1, 2, 3, 4, 6]
-    opts.notdef_outline = True
-    opts.hinting = False
-    sub = subset.Subsetter(opts)
-    sub.populate(unicodes=UNICODES)
-    sub.subset(font)
-    font = instancer.instantiateVariableFont(font, {"wght": wght}, inplace=False)
-    pdf_dir = OUT / "pdf"
-    pdf_dir.mkdir(parents=True, exist_ok=True)
-    font.save(pdf_dir / out_name)
-    return (pdf_dir / out_name).stat().st_size
-
-
 def glyph_check(label, font):
     """Проверка уже собранного файла: казахские, русские, символы."""
     cmap = font.getBestCmap()
@@ -135,11 +117,7 @@ def main():
         f = lambda v: "-" if not v else "".join(v)
         lines.append(f"| {label}: {name} | {size/1024:.0f} КБ | {f(row['kk'])} | {f(row['ru'])} | {f(row['latin'])} | {f(row['symbols'])} |")
         print(("OK  " if ok else "FAIL"), name, f"{size/1024:.0f} KB", "symbols missing:", f(row["symbols"]))
-    for src, out, w in [("Onest.ttf", "Onest-Regular.ttf", 400), ("Onest.ttf", "Onest-Bold.ttf", 700), ("PlayfairDisplay.ttf", "PlayfairDisplay-Medium.ttf", 500)]:
-        size = build_static_ttf(src, out, w)
-        print("OK  ", "pdf/" + out, f"{size/1024:.0f} KB")
-    lines += ["", "Для PDF-сметы дополнительно собраны статические TTF (src/fonts/pdf): Onest 400 и 700, Playfair Display 500. Те же подмножества, казахские буквы на месте.", "", "Запасной шрифт для знака `₸` в заголовках Playfair не нужен: тенге набирается в Onest (в нем ₸ есть).",
-              "Фирменный блочный шрифт логотипа используется только в самом логотипе (SVG)."]
+    lines += ["", "Фирменный блочный шрифт логотипа используется только в самом логотипе (SVG)."]
     DOCS.mkdir(parents=True, exist_ok=True)
     (DOCS / "font-glyph-check.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
     return 1 if failed else 0

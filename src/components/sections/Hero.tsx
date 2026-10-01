@@ -71,7 +71,7 @@ export async function Hero() {
             {t("subtitle")}
           </p>
           <div className="hero__cta hero__anim" style={{ ["--i" as string]: 5 }}>
-            <Link href={{ pathname: "/", hash: "calculator" }} className="btn btn-gold btn-lg">
+            <Link href={{ pathname: "/", hash: "contacts" }} className="btn btn-gold btn-lg">
               {t("primaryCta")}
               <ArrowRight size={20} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
             </Link>

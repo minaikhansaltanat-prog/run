@@ -9,6 +9,7 @@ import { Photo } from "@/components/ui/Photo";
 import { lockScroll, unlockScroll } from "@/lib/scroll-lock";
 import { track } from "@/lib/analytics";
 import { asset } from "@/lib/site-mode";
+import { whatsappLink } from "@config/site";
 import type { GalleryTile } from "./types";
 
 interface Props {
@@ -135,8 +136,6 @@ export function Lightbox({ items, index, onIndex, onClose }: Props) {
     );
   };
 
-  const calcHref = { pathname: "/", query: { type: tile.calcType }, hash: "calculator" } as const;
-
   return (
     <div ref={rootRef} className="lightbox dark-surface" role="dialog" aria-modal="true" aria-label={t("label")}>
       <div className="lightbox__bar">
@@ -201,17 +200,16 @@ export function Lightbox({ items, index, onIndex, onClose }: Props) {
       <div className="lightbox__foot">
         <p className="lightbox__alt">{tile.alt}</p>
         <div className="lightbox__actions">
-          <Link
-            href={calcHref}
+          <a
+            href={whatsappLink(`${t("whatsappText")}${tile.objectTitle ? ` (${tile.objectTitle})` : ""}`)}
             className="btn btn-gold"
-            onClick={() => {
-              track("gallery_to_calc", { id: tile.id });
-              onClose();
-            }}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("click_whatsapp", { place: "lightbox", id: tile.id })}
           >
-            {t("calcCta")}
+            {t("wantCta")}
             <ArrowRight size={18} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
-          </Link>
+          </a>
           {tile.objectSlug && (
             <Link href={`/objects/${tile.objectSlug}`} className="btn btn-outline-light" onClick={onClose}>
               {t("viewObject")}

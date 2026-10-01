@@ -1,5 +1,4 @@
 import { NextResponse } from "next/server";
-import { pricing } from "@/lib/estimate/pricing";
 import { clientIp, rateLimit } from "@/lib/server/rate-limit";
 import { leadSchema } from "@/lib/server/lead-schema";
 import { buildLeadMessage } from "@/lib/server/lead-message";
@@ -13,11 +12,6 @@ export const dynamic = "force-dynamic";
 
 const json = (body: Record<string, unknown>, status = 200, headers?: Record<string, string>) =>
   NextResponse.json(body, { status, headers: { "Cache-Control": "no-store", ...headers } });
-
-/** Режим предпросмотра цен разрешен только вне production или по явной переменной окружения */
-function previewAllowed(): boolean {
-  return process.env.NODE_ENV !== "production" || Boolean(process.env.ALLOW_PRICING_PREVIEW);
-}
 
 export async function POST(req: Request) {
   // 1. ограничение частоты
@@ -44,12 +38,11 @@ export async function POST(req: Request) {
 
   // 3. ловушки для ботов: honeypot и слишком быстрая отправка. Бот получает "успех" и ничего не отправляется.
   if ((data.hp && data.hp.length > 0) || (data.elapsedMs !== undefined && data.elapsedMs < 1200)) {
-    return json({ ok: true, id: null });
+    return json({ ok: true });
   }
 
-  // 4. сообщение менеджеру (сумма пересчитывается здесь, значениям из браузера не доверяем)
-  const message = buildLeadMessage(data, pricing, { previewAllowed: previewAllowed() });
-  const sent = await sendTelegram(message.text);
+  // 4. сообщение менеджеру
+  const sent = await sendTelegram(buildLeadMessage(data));
   if (!sent.ok) {
     return json({ ok: false, error: sent.error ?? "send_failed" }, 503);
   }
@@ -57,8 +50,6 @@ export async function POST(req: Request) {
   const giftFileReady = gift.available && existsSync(path.join(process.cwd(), "public", gift.file));
   return json({
     ok: true,
-    id: message.calcId ?? null,
-    priced: message.priced,
     gift: data.type === "gift" ? { available: giftFileReady, file: giftFileReady ? gift.file : null } : undefined,
   });
 }

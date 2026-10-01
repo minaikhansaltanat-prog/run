@@ -23,8 +23,6 @@ const nextConfig: NextConfig = {
   agentRules: false,
   reactStrictMode: true,
   devIndicators: false,
-  // PDF-генерация живет только на сервере
-  serverExternalPackages: ["@react-pdf/renderer"],
   experimental: {
     optimizePackageImports: ["@phosphor-icons/react", "motion"],
   },
@@ -41,9 +39,8 @@ const nextConfig: NextConfig = {
         images: { unoptimized: true },
       }
     : {
-        // шрифты и логотип для PDF должны попасть в serverless-функцию на Vercel
+        // файл подарка (прайс-лист) должен попасть в serverless-функцию на Vercel
         outputFileTracingIncludes: {
-          "/api/calculator/pdf": ["./src/fonts/pdf/**", "./public/brand/logo-h-light.png"],
           "/api/lead": ["./public/downloads/**"],
         },
         async headers() {

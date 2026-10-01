@@ -13,7 +13,6 @@ import { site, whatsappLink } from "@config/site";
 const NAV = [
   { key: "services", id: "services" },
   { key: "works", id: "works" },
-  { key: "calculator", id: "calculator" },
   { key: "reviews", id: "reviews" },
   { key: "contacts", id: "contacts" },
 ] as const;
@@ -142,8 +141,8 @@ export function Header() {
               {site.phone.display}
             </a>
             <LanguageSwitcher />
-            <Link href={href("calculator")} className="btn btn-gold btn-sm header-cta">
-              {tc("calculateCost")}
+            <Link href={href("contacts")} className="btn btn-gold btn-sm header-cta">
+              {tc("leaveRequest")}
             </Link>
             <button
               ref={burgerRef}
@@ -224,8 +223,8 @@ export function Header() {
               </div>
             </div>
 
-            <Link href={href("calculator")} className="btn btn-gold btn-lg btn-block drawer__cta" onClick={close}>
-              {tc("calculateCost")}
+            <Link href={href("contacts")} className="btn btn-gold btn-lg btn-block drawer__cta" onClick={close}>
+              {tc("leaveRequest")}
               <ArrowRight size={20} weight="bold" aria-hidden="true" className="btn-icon btn-icon-arrow" />
             </Link>
           </div>

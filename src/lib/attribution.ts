@@ -1,6 +1,6 @@
 "use client";
 // UTM-метки и страница-источник добавляются в каждую заявку (ТЗ раздел 9).
-// Метки запоминаются на сессию: клиент мог прийти из Instagram на главную, а оставить заявку на /calculator.
+// Метки запоминаются на сессию: клиент мог прийти из Instagram на главную, а оставить заявку на странице галереи.
 
 const KEY = "ruh_attr";
 const FIELDS = ["utm_source", "utm_medium", "utm_campaign", "utm_content", "utm_term"] as const;

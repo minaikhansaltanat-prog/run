@@ -2,7 +2,7 @@
 // Для каждой ссылки, кнопки и поля формы на странице: прокручивает элемент в три разных места экрана
 // (выше центра, центр, ниже центра) и смотрит, что лежит в точке его центра. Если там другой элемент
 // (прозрачный контейнер плавающей кнопки, шапка, панель), нажатие до кнопки не дойдет: такой элемент выводится как ошибка.
-// Параметры: --base=http://localhost:3000  --paths=/,/kk,/calculator  --widths=360,390,1440
+// Параметры: --base=http://localhost:3000  --paths=/,/kk,/gallery  --widths=360,390,1440
 import puppeteer from "puppeteer";
 
 const args = Object.fromEntries(
@@ -12,7 +12,7 @@ const args = Object.fromEntries(
     .map((a) => a.slice(2).split("=")),
 );
 const base = args.base || "http://localhost:3000";
-const paths = (args.paths || "/,/kk,/gallery,/calculator,/kk/calculator,/objects/kvartira-svetlyy-interer,/privacy").split(",");
+const paths = (args.paths || "/,/kk,/gallery,/kk/gallery,/objects/kvartira-svetlyy-interer,/privacy").split(",");
 const widths = (args.widths || "360,390,768,1440").split(",").map(Number);
 
 const browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"] });
@@ -24,7 +24,7 @@ try {
       const mobile = w < 768;
       await page.setViewport({ width: w, height: mobile ? 780 : 900, deviceScaleFactor: 1, isMobile: mobile, hasTouch: mobile });
       await page.goto(base + path, { waitUntil: "networkidle2", timeout: 120000 });
-      // подгружаем отложенные блоки (калькулятор, плавающая кнопка)
+      // подгружаем отложенные блоки (плавающая кнопка, галерея)
       await page.evaluate(async () => {
         document.documentElement.style.scrollBehavior = "auto";
         for (let y = 0; y < document.documentElement.scrollHeight; y += 500) {
