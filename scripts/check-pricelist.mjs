@@ -30,9 +30,9 @@ async function run(label, viewport, mobile) {
   page.on("request", (r) => urls.push(r.url()));
   page.on("pageerror", (e) => errors.push(String(e).slice(0, 160)));
   page.on("console", (m) => m.type() === "error" && errors.push(m.text().slice(0, 600)));
-  await page.goto(base + path, { waitUntil: "load", timeout: 120000 });
+  await page.goto(base + path, { waitUntil: "domcontentloaded", timeout: 60000 });
   await page.waitForSelector(".gift-banner__btn", { timeout: 30000 });
-  await sleep(1500);
+  await sleep(2500);
   await page.evaluate(() => document.querySelector(".gift-banner__btn").scrollIntoView({ block: "center", behavior: "instant" }));
   await sleep(600);
   const pt = await page.evaluate(() => {
@@ -41,7 +41,7 @@ async function run(label, viewport, mobile) {
   });
   if (mobile) await page.touchscreen.tap(pt.x, pt.y);
   else await page.mouse.click(pt.x, pt.y);
-  await page.waitForSelector(".pl-root", { timeout: 20000 });
+  await page.waitForSelector(".pl-root", { timeout: 40000 });
   ok(true, `${label}: окно просмотра открылось`);
 
   await page.waitForFunction(() => document.querySelector('.pl-page[data-page="1"]')?.getAttribute("data-state") === "done", { timeout: 30000 });
