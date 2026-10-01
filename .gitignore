@@ -36,3 +36,6 @@ __pycache__/
 assets/brand/_*.png
 assets/brand/*.extracted.svg
 docs/photo-qa/_*.png
+
+# вывод инструмента graphify (локальный граф знаний, не часть сайта)
+graphify-out/
