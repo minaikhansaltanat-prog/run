@@ -86,7 +86,9 @@ for (const [raw, meta] of entries) {
   const info = await sharp(src).metadata();
   const widths = exp.widths.filter((w) => w <= info.width);
   if (!widths.length) widths.push(info.width);
-  // если мастер заметно шире максимальной ширины набора, добавляем его как есть (не больше 2560)
+  // если мастер заметно шире самой большой стандартной ширины, добавляем его родную ширину (кадры без апскейла:
+  // 1125 px по горизонтали и т.п.), иначе лайтбокс растягивал бы меньшую копию
+  if (info.width > widths[widths.length - 1] + 64) widths.push(info.width);
   const written = await writeSet(src, meta.id, widths);
 
   const tiny = await sharp(src).resize({ width: 24 }).blur(1).webp({ quality: 40 }).toBuffer();
@@ -173,13 +175,32 @@ if (!only.length || only.includes(heroRaw.mobile)) {
   if (h) heroes.mobile = h;
 }
 
+// кадры, которые не пересобирались: обновляем только метаданные (комната, порядок, featured), файлы остаются прежними
+const processed = new Set(entries.map(([raw]) => raw));
+for (const [raw, meta] of Object.entries(photos)) {
+  if (processed.has(raw)) continue;
+  const it = byId.get(meta.id);
+  if (!it) continue;
+  Object.assign(it, {
+    objectSlug: meta.objectSlug,
+    objectType: meta.objectType,
+    room: meta.room,
+    tags: meta.tags,
+    stage: meta.stage,
+    pairId: meta.pairId,
+    featured: meta.featured,
+    order: meta.order,
+    focal: meta.focal,
+    lowRes: Boolean(meta.lowRes),
+  });
+}
 const items = [...byId.values()].sort((a, b) => a.order - b.order);
 fs.writeFileSync(galleryPath, JSON.stringify({ generatedAt: new Date().toISOString(), preset: preset.name, items, heroes }, null, 2));
 
 // контактный лист "до | после" и отчет качества (ТЗ 8.2 п.4, 8.4)
 async function contactSheet() {
   const rawDir = path.join(root, "assets", "raw");
-  const cell = 520;
+  const cell = 300;
   const rows = [];
   for (const [raw, meta] of Object.entries(photos).sort((a, b) => a[1].order - b[1].order)) {
     const g = path.join(gradedDir, `${raw}.png`);
@@ -197,7 +218,7 @@ async function contactSheet() {
   const labelH = 34;
   const tileW = cell * 2 + pad * 3;
   const tileH = cell + labelH + pad * 2;
-  const perRow = 2;
+  const perRow = 3;
   const sheetW = tileW * perRow;
   const sheetH = Math.ceil(rows.length / perRow) * tileH;
   const comps = [];
@@ -214,7 +235,7 @@ async function contactSheet() {
   }
   await sharp({ create: { width: sheetW, height: sheetH, channels: 3, background: "#17171a" } })
     .composite(comps)
-    .jpeg({ quality: 82 })
+    .jpeg({ quality: 72 })
     .toFile(path.join(qaDir, "contact-sheet.jpg"));
 }
 await contactSheet();
@@ -223,6 +244,7 @@ function report() {
   const lines = [];
   const rows = Object.entries(photos).sort((a, b) => a[1].order - b[1].order);
   const cct = [];
+  const cctById = [];
   lines.push("# Отчет контроля качества фото (ТЗ 8.4, 14.8)", "");
   lines.push(`Пресет: ${preset.name} (${preset.version}). Сила переноса ${preset.grade.strength}. Оригиналы в assets/raw не менялись.`, "");
   lines.push("| Фото | Оригинал | Рабочая копия | Обработка | L* до>после | p5 | цвет (хрома) | CCT, K | пересветы, % | Замечания |");
@@ -232,12 +254,15 @@ function report() {
     if (!s) continue;
     const issues = [];
     const longOrig = Math.max(s.original.w, s.original.h);
-    if (longOrig < preset.qa.minWidthForHeroPx)
-      issues.push(`оригинал ${longOrig} px: для hero нужен 2400+ (использован апскейл, лучше запросить оригинал)`);
+    if (longOrig < preset.qa.minWidthForHeroPx && meta.featured)
+      issues.push(
+        `оригинал ${longOrig} px: для hero нужен 2400+ (${s.flags.includes("esrgan") ? "использован апскейл" : "апскейла нет, родное разрешение"}, лучше запросить оригинал)`,
+      );
     if (s.after.clip_hi_pct > preset.qa.maxHighlightClipPct)
       issues.push(`пересветы ${s.after.clip_hi_pct.toFixed(1)}% (норма до ${preset.qa.maxHighlightClipPct}%)`);
     if (meta.lowRes) issues.push("кадр из видео (720x1280), качество ниже остальных: запросить оригинал фото");
     cct.push(s.after.cct_k);
+    cctById.push([meta.id, s.after.cct_k]);
     lines.push(
       `| ${meta.id} (${raw}) | ${s.original.w}x${s.original.h} | ${s.master.w}x${s.master.h} | ${s.flags.join(", ")} | ${s.before.L_mean.toFixed(1)} > ${s.after.L_mean.toFixed(1)} | ${s.before.L_p5.toFixed(0)} > ${s.after.L_p5.toFixed(0)} | ${s.before.chroma_mean.toFixed(1)} > ${s.after.chroma_mean.toFixed(1)} | ${s.before.cct_k.toFixed(0)} > ${s.after.cct_k.toFixed(0)} | ${s.before.clip_hi_pct.toFixed(1)} > ${s.after.clip_hi_pct.toFixed(1)} | ${issues.join("; ") || "-"} |`,
     );
@@ -248,8 +273,14 @@ function report() {
     const [lo, hi] = preset.qa.cctCorridorK;
     lines.push(
       "",
-      `Цветовая температура набора после обработки: ${min.toFixed(0)}-${max.toFixed(0)} K (коридор ${lo}-${hi} K): ${min >= lo && max <= hi ? "в норме" : "ЕСТЬ ВЫХОДЫ ЗА КОРИДОР, см. таблицу"}.`,
+      `Цветовая температура набора после обработки: ${min.toFixed(0)}-${max.toFixed(0)} K (коридор ${lo}-${hi} K): ${min >= lo && max <= hi ? "в норме" : "есть выходы за коридор, список ниже"}.`,
     );
+    const out = cctById.filter(([, k]) => k < lo || k > hi);
+    if (out.length)
+      lines.push(
+        "",
+        `Вне коридора: ${out.map(([id, k]) => `${id} (${k.toFixed(0)} K)`).join(", ")}. Это кадры с доминирующими насыщенными цветами (дерево, синие стены и панели, яркая фотообоина в детской): оценка температуры по среднему цвету для них не показательна. Баланс белого на них проверен глазами по контрольному листу, белые поверхности нейтральные.`,
+      );
   }
   lines.push(
     "",

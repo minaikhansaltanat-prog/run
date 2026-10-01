@@ -39,3 +39,6 @@ docs/photo-qa/_*.png
 
 # вывод инструмента graphify (локальный граф знаний, не часть сайта)
 graphify-out/
+
+# исходники новых фото клиента (рабочие копии лежат в assets/raw, список в assets/raw/manifest.json)
+Photo/New/

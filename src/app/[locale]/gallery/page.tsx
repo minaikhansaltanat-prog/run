@@ -7,7 +7,7 @@ import { GalleryGrid } from "@/components/gallery/GalleryGrid";
 import { ClientMessages } from "@/components/ClientMessages";
 import { getGalleryTiles } from "@/lib/gallery-tiles";
 import { absoluteUrl, buildMetadata, SITE_URL } from "@/lib/seo";
-import { galleryItems } from "@/lib/gallery-data";
+import { galleryItems, largestUrl } from "@/lib/gallery-data";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -32,7 +32,7 @@ export default async function GalleryPage({ params }: { params: Promise<{ locale
     url: absoluteUrl(locale, "/gallery"),
     image: galleryItems.map((i) => ({
       "@type": "ImageObject",
-      contentUrl: `${SITE_URL}${i.file}-1600.jpg`,
+      contentUrl: `${SITE_URL}${largestUrl(i)}`,
       name: tp(i.id),
       width: i.width,
       height: i.height,

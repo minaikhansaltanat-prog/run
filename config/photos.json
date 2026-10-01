@@ -1,171 +1,1325 @@
 {
+  "p34": {
+    "id": "ph-0034",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "kitchen",
+    "tags": [
+      "navy",
+      "marble"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": true,
+    "order": 1,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
   "p06": {
     "id": "ph-0001",
     "objectSlug": "kvartira-svetlyy-interer",
     "objectType": "apartment",
     "room": "living",
-    "tags": ["window", "light"],
+    "tags": [
+      "window",
+      "light"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": true,
-    "order": 1,
-    "focal": [0.5, 0.55]
+    "order": 2,
+    "focal": [
+      0.5,
+      0.55
+    ]
+  },
+  "p54": {
+    "id": "ph-0054",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "navy",
+      "marble",
+      "mirror-light"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": true,
+    "order": 3,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p21": {
+    "id": "ph-0021",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "sofa",
+      "cove-light"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": true,
+    "order": 4,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p40": {
+    "id": "ph-0040",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "sofa",
+      "glass-partition"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": true,
+    "order": 5,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
   "p09": {
     "id": "ph-0005",
     "objectSlug": "kvartira-sanuzly-i-holl",
     "objectType": "apartment",
     "room": "bathroom",
-    "tags": ["tile", "mirror-light"],
+    "tags": [
+      "tile",
+      "mirror-light"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": true,
-    "order": 2,
-    "focal": [0.45, 0.5]
+    "order": 6,
+    "focal": [
+      0.45,
+      0.5
+    ]
   },
-  "p04": {
-    "id": "ph-0003",
-    "objectSlug": "kvartira-svetlyy-interer",
+  "p26": {
+    "id": "ph-0026",
+    "objectSlug": null,
     "objectType": "apartment",
-    "room": "bedroom",
-    "tags": ["window", "floor"],
+    "room": "kitchen",
+    "tags": [
+      "corner-kitchen",
+      "terrazzo"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": true,
-    "order": 3,
-    "focal": [0.62, 0.5]
+    "order": 7,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p48": {
+    "id": "ph-0048",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "wardrobe",
+      "mosaic",
+      "sconces"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": true,
+    "order": 8,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
   "p05": {
     "id": "ph-0002",
     "objectSlug": "kvartira-svetlyy-interer",
     "objectType": "apartment",
     "room": "kitchen",
-    "tags": ["open-space", "track-light"],
+    "tags": [
+      "open-space",
+      "track-light"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": true,
-    "order": 4,
-    "focal": [0.5, 0.5]
+    "order": 9,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
-  "p12": {
-    "id": "ph-0006",
-    "objectSlug": "kvartira-sanuzly-i-holl",
+  "p68": {
+    "id": "ph-0068",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "kids",
+      "mural"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": true,
+    "order": 10,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p15": {
+    "id": "ph-0015",
+    "objectSlug": null,
     "objectType": "apartment",
     "room": "hall",
-    "tags": ["hidden-doors", "mirror"],
+    "tags": [
+      "slats",
+      "terrazzo"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": true,
-    "order": 5,
-    "focal": [0.5, 0.5]
+    "order": 11,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
-  "p07": {
-    "id": "ph-0004",
+  "p04": {
+    "id": "ph-0003",
     "objectSlug": "kvartira-svetlyy-interer",
     "objectType": "apartment",
     "room": "bedroom",
-    "tags": ["wardrobe", "door"],
+    "tags": [
+      "window",
+      "floor"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": true,
-    "order": 6,
-    "focal": [0.5, 0.5]
+    "order": 12,
+    "focal": [
+      0.62,
+      0.5
+    ]
   },
-  "p13": {
-    "id": "ph-0007",
-    "objectSlug": "interer-s-panoramnym-oknom",
+  "p24": {
+    "id": "ph-0024",
+    "objectSlug": null,
     "objectType": "apartment",
     "room": "living",
-    "tags": ["panoramic-window"],
+    "tags": [
+      "sofa",
+      "studio"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": false,
-    "order": 7,
-    "focal": [0.5, 0.5],
-    "lowRes": true
+    "order": 13,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
-  "p11": {
-    "id": "ph-0008",
-    "objectSlug": "kvartira-sanuzly-i-holl",
+  "p36": {
+    "id": "ph-0036",
+    "objectSlug": null,
     "objectType": "apartment",
-    "room": "hall",
-    "tags": ["hidden-doors", "veneer"],
+    "room": "kitchen",
+    "tags": [
+      "navy",
+      "dining"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": false,
-    "order": 8,
-    "focal": [0.5, 0.5]
-  },
-  "p14": {
-    "id": "ph-0009",
-    "objectSlug": "kvartira-sanuzly-i-holl",
-    "objectType": "apartment",
-    "room": "hall",
-    "tags": ["hidden-door", "smart-panel"],
-    "stage": "after",
-    "pairId": null,
-    "featured": false,
-    "order": 9,
-    "focal": [0.5, 0.5]
-  },
-  "p01": {
-    "id": "ph-0010",
-    "objectSlug": "kvartira-svetlyy-interer",
-    "objectType": "apartment",
-    "room": "bedroom",
-    "tags": ["desk"],
-    "stage": "after",
-    "pairId": null,
-    "featured": false,
-    "order": 10,
-    "focal": [0.5, 0.5]
+    "order": 14,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
   "p08": {
     "id": "ph-0011",
     "objectSlug": "kvartira-sanuzly-i-holl",
     "objectType": "apartment",
     "room": "bathroom",
-    "tags": ["tile", "wall-hung"],
+    "tags": [
+      "tile",
+      "wall-hung"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": false,
-    "order": 11,
-    "focal": [0.5, 0.5]
+    "order": 15,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p16": {
+    "id": "ph-0016",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "terrazzo"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 16,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p07": {
+    "id": "ph-0004",
+    "objectSlug": "kvartira-svetlyy-interer",
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "wardrobe",
+      "door"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 17,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p22": {
+    "id": "ph-0022",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "wood"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 18,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p69": {
+    "id": "ph-0069",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "balcony",
+    "tags": [
+      "brick",
+      "built-in"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 19,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p13": {
+    "id": "ph-0007",
+    "objectSlug": "interer-s-panoramnym-oknom",
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "panoramic-window"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 20,
+    "focal": [
+      0.5,
+      0.5
+    ],
+    "lowRes": true
+  },
+  "p28": {
+    "id": "ph-0028",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "kitchen",
+    "tags": [
+      "corner-kitchen"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 21,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
   "p10": {
     "id": "ph-0012",
     "objectSlug": "kvartira-sanuzly-i-holl",
     "objectType": "apartment",
     "room": "bathroom",
-    "tags": ["hidden-light"],
+    "tags": [
+      "hidden-light"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": false,
-    "order": 12,
-    "focal": [0.5, 0.5]
+    "order": 22,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p17": {
+    "id": "ph-0017",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "terrazzo",
+      "mirror"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 23,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p01": {
+    "id": "ph-0010",
+    "objectSlug": "kvartira-svetlyy-interer",
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "desk"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 24,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p31": {
+    "id": "ph-0031",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "slats",
+      "wood-floor"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 25,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p71": {
+    "id": "ph-0071",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "balcony",
+    "tags": [
+      "brick",
+      "lounge"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 26,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p27": {
+    "id": "ph-0027",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "open-space",
+      "slats"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 27,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p37": {
+    "id": "ph-0037",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "kitchen",
+    "tags": [
+      "marble",
+      "dining"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 28,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p52": {
+    "id": "ph-0052",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "shower",
+      "laundry"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 29,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p12": {
+    "id": "ph-0006",
+    "objectSlug": "kvartira-sanuzly-i-holl",
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "hidden-doors",
+      "mirror"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 30,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p23": {
+    "id": "ph-0023",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "slats",
+      "platform-bed"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 31,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
   "p02": {
     "id": "ph-0013",
     "objectSlug": "kvartira-svetlyy-interer",
     "objectType": "apartment",
     "room": "detail",
-    "tags": ["door"],
+    "tags": [
+      "door"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": false,
-    "order": 13,
-    "focal": [0.5, 0.5]
+    "order": 32,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p29": {
+    "id": "ph-0029",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "balcony",
+    "tags": [
+      "panoramic-glazing"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 33,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p39": {
+    "id": "ph-0039",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "moldings",
+      "glass-partition"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 34,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p38": {
+    "id": "ph-0038",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "kitchen",
+    "tags": [
+      "navy",
+      "moldings"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 35,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p55": {
+    "id": "ph-0055",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "shower",
+      "wall-hung-wc"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 36,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p11": {
+    "id": "ph-0008",
+    "objectSlug": "kvartira-sanuzly-i-holl",
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "hidden-doors",
+      "veneer"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 37,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p25": {
+    "id": "ph-0025",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "slats",
+      "cove-light"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 38,
+    "focal": [
+      0.5,
+      0.5
+    ]
   },
   "p03": {
     "id": "ph-0014",
     "objectSlug": "kvartira-svetlyy-interer",
     "objectType": "apartment",
     "room": "detail",
-    "tags": ["window-sill", "radiator"],
+    "tags": [
+      "window-sill",
+      "radiator"
+    ],
     "stage": "after",
     "pairId": null,
     "featured": false,
-    "order": 14,
-    "focal": [0.5, 0.5]
+    "order": 39,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p30": {
+    "id": "ph-0030",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "balcony",
+    "tags": [
+      "panoramic-glazing"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 40,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p41": {
+    "id": "ph-0041",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "moldings"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 41,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p56": {
+    "id": "ph-0056",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "shower",
+      "mosaic"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 42,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p14": {
+    "id": "ph-0009",
+    "objectSlug": "kvartira-sanuzly-i-holl",
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "hidden-door",
+      "smart-panel"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 43,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p67": {
+    "id": "ph-0067",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "kids",
+      "wardrobe"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 44,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p32": {
+    "id": "ph-0032",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "kitchen"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 45,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p42": {
+    "id": "ph-0042",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "dining",
+      "glass-partition"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 46,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p57": {
+    "id": "ph-0057",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "marble",
+      "built-in"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 47,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p18": {
+    "id": "ph-0018",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "hidden-door",
+      "mirror"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 48,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p70": {
+    "id": "ph-0070",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bedroom",
+    "tags": [
+      "kids",
+      "workspace"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 49,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p33": {
+    "id": "ph-0033",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "radiator",
+      "window"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 50,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p43": {
+    "id": "ph-0043",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "sofa",
+      "3d-panels"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 51,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p59": {
+    "id": "ph-0059",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "marble",
+      "built-in"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 52,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p19": {
+    "id": "ph-0019",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "hidden-door",
+      "slats"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 53,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p35": {
+    "id": "ph-0035",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "marble",
+      "floor"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 54,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p62": {
+    "id": "ph-0062",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "accent-wall",
+      "leather-sofa"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 55,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p60": {
+    "id": "ph-0060",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "bathroom",
+    "tags": [
+      "marble",
+      "compact"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 56,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p20": {
+    "id": "ph-0020",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "hidden-door",
+      "terrazzo"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 57,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p51": {
+    "id": "ph-0051",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "mosaic",
+      "marble"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 58,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p64": {
+    "id": "ph-0064",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "leather-sofa",
+      "panels"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 59,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p45": {
+    "id": "ph-0045",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "corridor",
+      "track-light"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 60,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p72": {
+    "id": "ph-0072",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "door",
+      "moldings"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 61,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p44": {
+    "id": "ph-0044",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "dining",
+      "sofa"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 62,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p74": {
+    "id": "ph-0074",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "wardrobe",
+      "accent-wall"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 63,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p58": {
+    "id": "ph-0058",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "engineering",
+      "manifold"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 64,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p65": {
+    "id": "ph-0065",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "accent-wall",
+      "moldings"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 65,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p46": {
+    "id": "ph-0046",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "mosaic",
+      "sconces"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 66,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p73": {
+    "id": "ph-0073",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "3d-panel",
+      "accent-wall"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 67,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p66": {
+    "id": "ph-0066",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "living",
+    "tags": [
+      "grey-walls"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 68,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p47": {
+    "id": "ph-0047",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "wardrobe",
+      "mosaic"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 69,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p61": {
+    "id": "ph-0061",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "engineering",
+      "manifold"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 70,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p49": {
+    "id": "ph-0049",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "corridor",
+      "parquet"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 71,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p63": {
+    "id": "ph-0063",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "detail",
+    "tags": [
+      "engineering",
+      "manifold"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 72,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p50": {
+    "id": "ph-0050",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "mirror",
+      "sconces"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 73,
+    "focal": [
+      0.5,
+      0.5
+    ]
+  },
+  "p53": {
+    "id": "ph-0053",
+    "objectSlug": null,
+    "objectType": "apartment",
+    "room": "hall",
+    "tags": [
+      "mosaic",
+      "sconce"
+    ],
+    "stage": "after",
+    "pairId": null,
+    "featured": false,
+    "order": 74,
+    "focal": [
+      0.5,
+      0.5
+    ]
   }
 }

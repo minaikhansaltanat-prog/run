@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { localeMeta, routing } from "@/i18n/routing";
 import { absoluteUrl } from "@/lib/seo";
-import { galleryItems } from "@/lib/gallery-data";
+import { galleryItems, largestUrl } from "@/lib/gallery-data";
 import { objects } from "@/lib/objects-data";
 import { SITE_URL } from "@/lib/seo";
 
@@ -18,9 +18,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     for (const locale of routing.locales) {
       const images =
         path === "/gallery"
-          ? galleryItems.map((i) => `${SITE_URL}${i.file}-1600.jpg`)
+          ? galleryItems.map((i) => `${SITE_URL}${largestUrl(i)}`)
           : path.startsWith("/objects/")
-            ? galleryItems.filter((i) => `/objects/${i.objectSlug}` === path).map((i) => `${SITE_URL}${i.file}-1600.jpg`)
+            ? galleryItems.filter((i) => `/objects/${i.objectSlug}` === path).map((i) => `${SITE_URL}${largestUrl(i)}`)
             : undefined;
       out.push({
         url: absoluteUrl(locale, path),

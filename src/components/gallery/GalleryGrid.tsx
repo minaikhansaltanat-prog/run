@@ -12,7 +12,7 @@ import type { GalleryTile } from "./types";
 // lightbox тяжелее сетки: грузим только при первом открытии
 const Lightbox = dynamic(() => import("./Lightbox").then((m) => m.Lightbox), { ssr: false });
 
-const ROOM_FILTERS = ["living", "kitchen", "bedroom", "bathroom", "hall", "detail"] as const;
+const ROOM_FILTERS = ["living", "kitchen", "bedroom", "bathroom", "hall", "balcony", "detail"] as const;
 
 interface Props {
   tiles: GalleryTile[];

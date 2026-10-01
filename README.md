@@ -79,7 +79,8 @@ npm run dev                  # http://localhost:3000
 - **Смета-калькулятор** убран по решению клиента. Последняя версия с ним сохранена в git-теге `calculator-v1` (`git checkout calculator-v1`).
 - **Объекты**: `content/objects.json` (+ тексты в `content/*.json`, раздел `objects`). Площадь/срок/год заполнять только по подтвержденным данным.
 - **Отзывы**: `content/reviews.json` (только с разрешения авторов).
-- **Фото**: исходники в `assets/raw`, список и порядок в `config/photos.json`, затем `npm run photos`. Результат попадает в `public/img` и `content/gallery.json`.
+- **Фото**: исходники в `assets/raw` (имена p01, p02, ...), список, комната и порядок в `config/photos.json`, затем `npm run photos`. Результат попадает в `public/img` и `content/gallery.json`.
+- **Новые фото в галерею**: 1) положить файл в `assets/raw/pNN.jpg`; 2) добавить запись в `config/photos.json` (`id` ph-00NN, `room`: living, kitchen, bedroom, bathroom, hall, balcony или detail, `order`, `featured`); 3) дописать описание фото (alt) в `content/ru.json` и `content/kk.json`, раздел `photos`; 4) `python scripts/grade_photos.py pNN`, затем `node scripts/enhance-photos.mjs --skip-grade pNN`. Фильтры галереи строятся сами по комнатам, в которых есть фото. Апскейл Real-ESRGAN (`node scripts/upscale-photos.mjs`, около 3 минут на фото) запускается до цветокоррекции и необязателен.
 - **Логотип и шрифты**: `scripts/build-logo.py`, `scripts/build-fonts.py` (нужны Python и fontTools; готовые файлы уже лежат в `public/brand` и `src/fonts`).
 
 ## Структура

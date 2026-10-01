@@ -1,6 +1,6 @@
 import galleryJson from "@content/gallery.json";
 
-export type Room = "living" | "bedroom" | "kitchen" | "bathroom" | "hall" | "office" | "restaurant" | "fitness" | "detail" | "other";
+export type Room = "living" | "bedroom" | "kitchen" | "bathroom" | "hall" | "balcony" | "office" | "restaurant" | "fitness" | "detail" | "other";
 
 export interface GalleryItem {
   id: string;
@@ -49,6 +49,12 @@ export const heroes = data.heroes;
 
 export function itemsByObject(slug: string): GalleryItem[] {
   return galleryItems.filter((i) => i.objectSlug === slug).sort((a, b) => a.order - b.order);
+}
+
+/** Адрес самой крупной копии кадра (не у всех кадров есть 1600: родное разрешение может быть меньше) */
+export function largestUrl(i: { file: string; widths: number[] }): string {
+  const w = i.widths.includes(1600) ? 1600 : i.widths[i.widths.length - 1];
+  return `${i.file}-${w}.jpg`;
 }
 
 export function getItem(id: string): GalleryItem | undefined {
