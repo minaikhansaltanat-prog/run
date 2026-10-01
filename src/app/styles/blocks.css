@@ -212,6 +212,8 @@
   position: relative;
   isolation: isolate;
   display: grid;
+  /* minmax(0, 1fr): колонка не раздувается под длинную кнопку или слово, поэтому содержимое не срезается справа */
+  grid-template-columns: minmax(0, 1fr);
   gap: 32px;
   overflow: hidden;
   padding: 32px 22px 22px;
@@ -229,17 +231,32 @@
 }
 @media (min-width: 1024px) {
   .designers__card {
-    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
     gap: 56px;
     align-items: stretch;
     padding: 64px 0 64px 64px;
   }
 }
 .designers__copy {
+  min-width: 0;
   display: grid;
   gap: 20px;
   align-content: center;
   justify-items: start;
+}
+/* кнопка не шире карточки: на телефоне во всю ширину, на самых узких экранах текст переносится */
+.designers__cta {
+  max-width: 100%;
+}
+@media (max-width: 767.98px) {
+  .designers__cta {
+    width: 100%;
+    padding: 12px 0.875rem;
+    gap: 0.5rem;
+    font-size: 1rem;
+    white-space: normal;
+    text-wrap: balance;
+  }
 }
 .designers__text {
   max-width: 48ch;
