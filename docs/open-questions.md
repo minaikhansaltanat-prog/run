@@ -10,7 +10,7 @@
 | # | Что нужно | Где применить | Пока на сайте |
 |---|-----------|---------------|---------------|
 | 1 | **Куда приходят заявки.** На GitHub Pages сервера нет, поэтому форма открывает WhatsApp с готовым сообщением (клиент сам нажимает "отправить"). Прямая отправка в Telegram возможна только с сервером (Vercel или свой Node): `TELEGRAM_BOT_TOKEN`, `TELEGRAM_CHAT_ID` | `.env` / Environment Variables серверной версии | WhatsApp-сообщение. Решение клиента: остаться на GitHub Pages или перейти на сервер ради Telegram |
-| 2 | **Домен** | Settings -> Pages -> Custom domain; в `.github/workflows/pages.yml` поставить `BASE_PATH: ""` и `NEXT_PUBLIC_SITE_URL: https://домен` | `https://minaikhansaltanat-prog.github.io/run/` |
+| 2 | ~~**Домен**~~ куплен ruxa.kz (ps.kz), workflow и Settings -> Pages -> Custom domain настроены на него; осталось прописать DNS-записи у регистратора (см. README, раздел «Выкладка на GitHub Pages») и дождаться выпуска сертификата | — | `https://ruxa.kz` (до готовности DNS сайт еще отвечает на `https://minaikhansaltanat-prog.github.io/run/`) |
 | 3 | **Юридическая проверка** страницы конфиденциальности (Закон РК о персональных данных) и реквизиты оператора (ТОО/ИП, БИН) | `src/app/[locale]/privacy/page.tsx`, `content/ru.json`/`kk.json` -> `privacy`, `config/site.ts` -> `requisites` | Шаблонный текст |
 | 4 | **Проверка казахского текста носителем** (переводчик/редактор) | `content/kk.json` | Текст написан и вычитан, но нужен взгляд носителя перед запуском рекламы |
 

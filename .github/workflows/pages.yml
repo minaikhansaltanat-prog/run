@@ -1,6 +1,7 @@
 # Выкладка сайта на GitHub Pages: при каждом push в main собирается статическая версия (npm run build:static)
-# и публикуется на https://<владелец>.github.io/<репозиторий>/
-# Один раз включить: GitHub -> Settings -> Pages -> Build and deployment -> Source: GitHub Actions.
+# и публикуется на https://ruxa.kz (свой домен, без подпапки).
+# Включить один раз: GitHub -> Settings -> Pages -> Build and deployment -> Source: GitHub Actions,
+# там же Custom domain = ruxa.kz (после того как DNS у регистратора прописан, см. README).
 name: Deploy to GitHub Pages
 
 on:
@@ -40,11 +41,16 @@ jobs:
       - name: Build static site
         run: npm run build:static
         env:
-          # сайт живет в подпапке репозитория: /run. На своем домене: BASE_PATH="" и NEXT_PUBLIC_SITE_URL=https://домен
-          BASE_PATH: /${{ github.event.repository.name }}
-          NEXT_PUBLIC_SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          # свой домен: без подпапки
+          BASE_PATH: ""
+          NEXT_PUBLIC_SITE_URL: https://ruxa.kz
           NEXT_PUBLIC_GA_ID: ${{ vars.NEXT_PUBLIC_GA_ID }}
           NEXT_PUBLIC_META_PIXEL_ID: ${{ vars.NEXT_PUBLIC_META_PIXEL_ID }}
+
+      - name: Add CNAME for custom domain
+        # на случай переключения источника Pages на "Deploy from a branch" в будущем;
+        # для текущего источника "GitHub Actions" GitHub сам хранит домен из Settings -> Pages и этот файл не обязателен
+        run: echo "ruxa.kz" > out/CNAME
 
       - uses: actions/upload-pages-artifact@v5
         with:

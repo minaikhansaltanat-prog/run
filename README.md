@@ -15,7 +15,7 @@ npm run dev                  # http://localhost:3000
 
 Продакшен-сборка локально: `npm run build && npm start`.
 Для скриншотов и проверок в рабочей папке есть `node serve.mjs` (localhost:3000) и `node screenshot.mjs http://localhost:3000`.
-Проверка версии для GitHub Pages: `npm run build:static && npm run serve:static` -> http://localhost:3000/run/ru/.
+Проверка версии для GitHub Pages: `npm run build:static && npm run serve:static` -> http://localhost:3000/run/ru/ (локальная проверка всегда с подпапкой `/run`, в проде ее уже нет — см. ниже).
 
 ## Команды
 
@@ -32,8 +32,7 @@ npm run dev                  # http://localhost:3000
 | `npm run check:taps` | ничто не перекрывает кнопки и ссылки (плавающая кнопка, шапка, панель) на телефоне и компьютере |
 | `npm run check:contrast` | контраст текста по токенам палитры |
 | `npm run photos` | конвейер фото: апскейл, цветокоррекция, AVIF/WebP/JPEG в `public/img` |
-| `npm run pricing:template` | создать `pricing-template.xlsx` для клиента |
-| `npm run pricing:import -- файл.xlsx` | проверить прайс и показать различия (`--write` применить, `--allow-approved` разрешить публикацию цен) |
+| `npm run pricelist` | собрать страницы прайс-листа (`python scripts/build-pricelist.py`) |
 
 ## Переменные окружения
 
@@ -48,10 +47,26 @@ npm run dev                  # http://localhost:3000
 ## Выкладка на GitHub Pages (основной способ, бесплатно)
 
 Сайт собирается как набор статических файлов и публикуется автоматически при каждом `git push` в `main`
-(workflow `.github/workflows/pages.yml`). Адрес: `https://<владелец>.github.io/<репозиторий>/`, сейчас https://minaikhansaltanat-prog.github.io/run/.
+(workflow `.github/workflows/pages.yml`). Живет на собственном домене **https://ruxa.kz** (без подпапки); адрес задан прямо в workflow (`BASE_PATH=""`, `NEXT_PUBLIC_SITE_URL=https://ruxa.kz`).
 
-Включить один раз: GitHub -> **Settings -> Pages -> Build and deployment -> Source: GitHub Actions** (не "Deploy from a branch").
+Включить один раз:
+1. GitHub -> **Settings -> Pages -> Build and deployment -> Source: GitHub Actions** (не "Deploy from a branch").
+2. Там же **Custom domain**: вписать `ruxa.kz`, сохранить. Галочку **Enforce HTTPS** поставить, когда GitHub выдаст сертификат (после того как DNS прописан и виден снаружи — обычно до суток, иногда дольше).
+3. У регистратора домена (ps.kz -> личный кабинет -> DNS-записи для ruxa.kz) добавить:
+
+   | Тип | Имя/хост | Значение | Примечание |
+   |---|---|---|---|
+   | A | `@` (или пусто, apex-домен) | `185.199.108.153` | все четыре A-записи на apex |
+   | A | `@` | `185.199.109.153` | |
+   | A | `@` | `185.199.110.153` | |
+   | A | `@` | `185.199.111.153` | |
+   | CNAME | `www` | `minaikhansaltanat-prog.github.io` | чтобы `www.ruxa.kz` тоже открывал сайт |
+
+   Если у ps.kz уже стоит своя запись A/CNAME на `@` (например, парковочная страница) — ее нужно удалить, иначе будет конфликт.
+4. Проверить распространение DNS: `nslookup ruxa.kz` должен показывать IP из списка выше (может занять от нескольких минут до нескольких часов).
+
 Дальше каждый push собирает и выкладывает сайт за 3-5 минут; ход сборки виден во вкладке **Actions**.
+Файл `CNAME` в сборке (`out/CNAME`) кладется на случай ручного переключения источника Pages на "Deploy from a branch"; при источнике "GitHub Actions" домен хранится в настройках репозитория, этот файл не обязателен.
 
 Что отличается от полной (серверной) версии, потому что у GitHub Pages нет сервера:
 
@@ -60,10 +75,11 @@ npm run dev                  # http://localhost:3000
 | Заявки из форм | открывается WhatsApp с готовым сообщением, клиент нажимает "отправить" | сразу в Telegram через бота, без действий клиента |
 | Адреса | `/ru/`, `/kk/` (оба языка с префиксом), корень `/` выбирает язык по браузеру | русский без префикса, казахский `/kk` |
 | Заголовки безопасности (HSTS и др.) | задает GitHub | задает `next.config.ts` |
-| Свой домен | подключается в Settings -> Pages; тогда `BASE_PATH=""` и `NEXT_PUBLIC_SITE_URL=https://домен` в workflow | да |
 
 Переменные для аналитики в Pages задаются как Variables: Settings -> Secrets and variables -> Actions -> Variables (`NEXT_PUBLIC_GA_ID`, `NEXT_PUBLIC_META_PIXEL_ID`).
 Токен Telegram-бота в статический сайт класть нельзя: он стал бы виден всем.
+
+Для локальной проверки сборки в подпапке (как было раньше на `github.io/run`) используйте `npm run build:static` без переменных — по умолчанию подставится `/run`.
 
 ## Выкладка с сервером (Vercel или свой Node), если понадобится прямая отправка заявок в Telegram
 
