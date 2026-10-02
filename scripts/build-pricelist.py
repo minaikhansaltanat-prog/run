@@ -27,6 +27,7 @@ SRC = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "assets" / "pricelist" 
 OUT = ROOT / "public" / "pricelist"
 ZOOM = 2.0  # A4 -> 1191 x 1684 px: читается при увеличении на телефоне, но не годится для печати
 WEBP_QUALITY = 82
+HEADER_CUT_PT = 105  # высота шапки первой страницы в pt (таблица начинается с ~119 pt)
 
 WATERMARK_TEXT = "RUH Construction"
 WATERMARK_ANGLE = 28
@@ -85,6 +86,10 @@ def main():
             m = re.search(r"(\d{4}-\d{2}-\d{2})", page.get_text())
             if m:
                 date_iso = m.group(1)
+        if i == 0:
+            # убираем шапку первой страницы: "Прайс-лист", дата и строка про сервис 101-app.com (по просьбе клиента)
+            page.add_redact_annot(pymupdf.Rect(0, 0, page.rect.width, HEADER_CUT_PT), fill=(1, 1, 1))
+            page.apply_redactions(images=pymupdf.PDF_REDACT_IMAGE_NONE)
         pix = page.get_pixmap(matrix=pymupdf.Matrix(ZOOM, ZOOM), alpha=False)
         img = Image.frombytes("RGB", (pix.width, pix.height), pix.samples).convert("RGBA")
         if layer is None or layer.size != img.size:

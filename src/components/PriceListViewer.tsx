@@ -206,10 +206,7 @@ export function PriceListViewer({ startOpen = false }: { startOpen?: boolean }) 
           <FileText size={24} weight="regular" />
         </span>
         <div className="pl-bar__text">
-          <p className="pl-bar__name">{t("viewerTitle")}</p>
-          <p className="pl-bar__meta">
-            {t("viewerDate", { date })} · {t("viewOnly")}
-          </p>
+          <p className="pl-bar__name">{t("viewOnly")}</p>
         </div>
         <p className="pl-bar__page tnum">
           <span aria-hidden="true">
